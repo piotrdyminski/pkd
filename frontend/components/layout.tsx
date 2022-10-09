@@ -1,23 +1,13 @@
 import { useState } from 'react';
 
-import {
-  AppShell,
-  Navbar,
-  Header,
-  Footer,
-  Aside,
-  Text,
-  MediaQuery,
-  Burger,
-  useMantineTheme,
-} from '@mantine/core';
+import { AppShell, Burger, Footer, Header, MediaQuery, Navbar, Text, useMantineTheme } from '@mantine/core';
 
-export default function Layout({ children }: React.PropsWithChildren<{}>) {
+export default function Layout({ children }: React.PropsWithChildren<unknown>) {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   return (
     <AppShell
-      fixed={false} 
+      fixed={false}
       styles={{
         root: {
           maxWidth: '1600px',

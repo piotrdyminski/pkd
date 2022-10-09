@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "husky-frontend": "cd frontend && yarn tsc --noEmit && yarn next lint && yarn prettier --write ."
+  },
+  "devDependencies": {
+    "husky": "^8.0.1"
+  }
+}
