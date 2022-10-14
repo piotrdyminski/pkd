@@ -9,8 +9,8 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <title>Parafia Kielce - Dyminy</title>
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <title>Parafia Kielce-Dyminy</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
 
@@ -18,8 +18,9 @@ export default function App(props: AppProps) {
         withGlobalStyles
         withNormalizeCSS
         theme={{
-          /** Put your mantine theme override here */
           colorScheme: 'light',
+          fontFamily: 'Georgia, serif',
+          headings: { fontFamily: 'Georgia, serif' },
         }}
       >
         <Layout>
