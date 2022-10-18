@@ -4,7 +4,7 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "Article",
+    "displayName": "Z Życia Parafii",
     "name": "article",
     "description": ""
   },
@@ -19,6 +19,11 @@
       "type": "string",
       "required": true
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
     "description": {
       "type": "text",
       "required": true
@@ -27,14 +32,17 @@
       "type": "richtext",
       "required": true
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title",
-      "required": true
-    },
     "image": {
       "type": "media",
       "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
       "required": false,
       "allowedTypes": [
         "images"
