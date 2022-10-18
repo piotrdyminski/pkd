@@ -1,10 +1,11 @@
 {
   "dependencies": {
     "@strapi/plugin-graphql": "^4.0.0",
-    "@strapi/strapi": "4.4.3",
-    "@strapi/plugin-users-permissions": "4.4.3",
     "@strapi/plugin-i18n": "4.4.3",
-    "better-sqlite3": "7.4.6"
+    "@strapi/plugin-users-permissions": "4.4.3",
+    "@strapi/strapi": "4.4.3",
+    "better-sqlite3": "7.4.6",
+    "patch-package": "^6.4.7"
   },
   "name": "backend",
   "private": true,
@@ -14,7 +15,9 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "build-prod": "yarn run patch-admin && yarn run build",
+    "strapi": "strapi",
+    "patch-admin" : "node src/extensions/patch-admin.js && patch-package @strapi/admin"
   },
   "devDependencies": {},
   "strapi": {
