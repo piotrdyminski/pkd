@@ -15,7 +15,7 @@
     "title": {
       "type": "string",
       "required": true,
-      "default": "Cementarz Parafialny"
+      "default": "Cmentarz Parafialny"
     },
     "slug": {
       "type": "uid",
