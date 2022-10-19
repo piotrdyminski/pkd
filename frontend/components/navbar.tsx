@@ -1,4 +1,4 @@
-import { Navbar } from '@mantine/core';
+import { Anchor, Navbar, Stack, Title } from '@mantine/core';
 import {
   IconAddressBook,
   IconAlbum,
@@ -12,6 +12,11 @@ import {
   IconPray,
   TablerIcon,
 } from '@tabler/icons';
+import Image from 'next/image';
+import Link from 'next/link';
+import diecezjaKielecka from '../public/diecezja-kielecka.png';
+import sanktuariumFatimskie from '../public/sanktuarium-fatimskie.png';
+import wiaraPL from '../public/wiara-pl.png';
 import { NavbarLinkButton } from './nabvar-link-button';
 import { NavbarGroupButton } from './navbar-group-button';
 
@@ -75,8 +80,44 @@ export default function AppNavbar({ opened }: AppNavbarProps) {
   });
 
   return (
-    <Navbar width={{ sm: 200, lg: 300 }} height="auto" p="xs" hiddenBreakpoint="sm" hidden={!opened}>
+    <Navbar width={{ sm: 200, lg: 300 }} height="auto" p="lg" hiddenBreakpoint="sm" hidden={!opened}>
       {links}
+      <Stack align="center" mt="50px">
+        <Title order={3}>Polecamy</Title>
+        <Stack spacing={0}>
+          <Link href="https://wiara.pl" passHref>
+            <Anchor component="a" target="_blank" rel="noopener noreferrer">
+              <Image src={wiaraPL} alt="Wiara.pl" width={558} height={200} quality={100}></Image>
+            </Anchor>
+          </Link>
+          <Link href="https://fatima.pt/pl/pages/transmisja-online" passHref>
+            <Anchor component="a" target="_blank" rel="noopener noreferrer">
+              <Image
+                src={sanktuariumFatimskie}
+                alt="Sanktuarium Fatimskie - Transmisja online"
+                width={558}
+                height={200}
+                quality={100}
+              ></Image>
+            </Anchor>
+          </Link>
+          <Link href="https://diecezja.kielce.pl" passHref>
+            <Anchor component="a" target="_blank" rel="noopener noreferrer">
+              <Image src={diecezjaKielecka} alt="Diecezja kielecka" width={558} height={200} quality={100}></Image>
+            </Anchor>
+          </Link>
+          <Anchor
+            className="twitter-timeline"
+            data-lang="pl"
+            data-width="259"
+            data-height="350"
+            href="https://twitter.com/Pontifex_pl?ref_src=twsrc%5Etfw"
+          >
+            Tweety użytkownika Pontifex_pl
+          </Anchor>{' '}
+          <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+        </Stack>
+      </Stack>
     </Navbar>
   );
 }
