@@ -1,31 +1,25 @@
 {
-  "kind": "collectionType",
-  "collectionName": "articles",
+  "kind": "singleType",
+  "collectionName": "histories",
   "info": {
-    "singularName": "article",
-    "pluralName": "articles",
-    "displayName": "Z Życia Parafii",
-    "name": "article",
+    "singularName": "history",
+    "pluralName": "histories",
+    "displayName": "Historia",
     "description": ""
   },
   "options": {
-    "increments": true,
-    "timestamps": true,
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "default": "Historia Parafii"
     },
     "slug": {
       "type": "uid",
       "targetField": "title",
-      "required": true
-    },
-    "description": {
-      "type": "text",
       "required": true
     },
     "content": {

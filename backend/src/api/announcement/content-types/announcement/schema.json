@@ -1,21 +1,19 @@
 {
   "kind": "collectionType",
-  "collectionName": "articles",
+  "collectionName": "announcements",
   "info": {
-    "singularName": "article",
-    "pluralName": "articles",
-    "displayName": "Z Życia Parafii",
-    "name": "article",
+    "singularName": "announcement",
+    "pluralName": "announcements",
+    "displayName": "Ogłoszenia",
     "description": ""
   },
   "options": {
-    "increments": true,
-    "timestamps": true,
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
     "title": {
+      "pluginOptions": {},
       "type": "string",
       "required": true
     },
@@ -25,10 +23,11 @@
       "required": true
     },
     "description": {
-      "type": "text",
+      "type": "string",
       "required": true
     },
     "content": {
+      "pluginOptions": {},
       "type": "richtext",
       "required": true
     },
@@ -38,15 +37,15 @@
       "required": false,
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "pluginOptions": {}
     },
     "images": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
