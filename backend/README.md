@@ -29,3 +29,13 @@ npm run build
 # or
 yarn build
 ```
+
+### `build-prod`
+
+Build your admin panel and apply custom changes to Strapi package (customize pages etc.) via 'patch-package'.
+
+```
+npm run build-prod
+# or
+yarn build-prod
+```
