@@ -1,10 +1,11 @@
-import { Group, Text, Title } from '@mantine/core';
+import { Text, Title } from '@mantine/core';
 import Image from 'next/image';
+import Page from '../components/page';
 import mainImage from '../public/main-image.png';
 
 export default function IndexPage() {
   return (
-    <Group mt="md" position="center">
+    <Page>
       <Title order={1} align="center">
         Parafia Rzymskokatolicka pw. Matki Bożej Fatimskiej
       </Title>
@@ -33,6 +34,6 @@ export default function IndexPage() {
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
         laborum.
       </Text>
-    </Group>
+    </Page>
   );
 }
