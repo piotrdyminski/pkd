@@ -32,7 +32,7 @@ yarn build
 
 ### `build-prod`
 
-Build your admin panel and apply custom changes to Strapi package (customize pages etc.) via 'patch-package'. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-build)
+Build your admin panel and apply custom changes to Strapi package (customize pages etc.) via 'patch-package'.
 
 ```
 npm run build-prod
