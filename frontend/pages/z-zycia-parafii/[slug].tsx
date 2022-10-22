@@ -32,14 +32,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<{ article: StrapiApiResponse<ArticleModel> }> = async ({ params }) => {
   const article = await fetchAPI<StrapiApiResponse<ArticleModel>>('/articles', {
+    populate: {
+      image: { populate: '*' },
+      images: {
+        populate: '*',
+        sort: ['createdAt:asc'],
+      },
+    },
     filters: {
       slug: {
         $eq: params?.slug,
       },
     },
-    populate: '*',
   });
-
   return {
     props: { article },
   };

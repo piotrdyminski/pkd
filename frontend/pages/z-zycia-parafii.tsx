@@ -44,10 +44,10 @@ export const getServerSideProps: GetServerSideProps<{ articles: StrapiApiRespons
 }) => {
   const page = query.strona || 1;
   const articles = await fetchAPI<StrapiApiResponse<ArticleModel>>('/articles', {
+    populate: ['image'],
+    sort: ['publishedAt:desc'],
     pagination: { page, pageSize: 10 },
-    populate: '*',
   });
-  console.log(articles);
   return {
     props: { articles },
   };
