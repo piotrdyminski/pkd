@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { NavbarButton } from './navbar-button';
 
-type NavbarLinkButtonProps = {
+export type NavbarLinkButtonProps = {
   icon: TablerIcon;
   label: string;
   link: string;

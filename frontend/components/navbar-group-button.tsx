@@ -13,7 +13,6 @@ const useStyles = createStyles((theme) => ({
     padding: `${theme.spacing.xs}px`,
     paddingLeft: 35,
     marginLeft: 25,
-    fontSize: theme.fontSizes.sm,
     color: theme.colors.gray[7],
     borderLeft: `1px solid ${theme.colors.gray[3]}`,
 
@@ -28,7 +27,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-type NavbarGroupButtonProps = {
+export type NavbarGroupButtonProps = {
   icon: TablerIcon;
   label: string;
   links: { label: string; link: string }[];

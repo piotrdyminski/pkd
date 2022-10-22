@@ -9,7 +9,6 @@ const useStyles = createStyles((theme) => ({
     width: '100%',
     padding: `${theme.spacing.xs}px`,
     color: theme.black,
-    fontSize: theme.fontSizes.sm,
 
     '&:hover, &.active': {
       backgroundColor: theme.colors.blue[1],

@@ -1,4 +1,4 @@
-import { Anchor, Navbar, Stack, Title } from '@mantine/core';
+import { Navbar, Stack, Title } from '@mantine/core';
 import {
   IconAddressBook,
   IconAlbum,
@@ -10,35 +10,22 @@ import {
   IconHome,
   IconNews,
   IconPray,
-  TablerIcon,
 } from '@tabler/icons';
-import Image from 'next/image';
-import Link from 'next/link';
 import diecezjaKielecka from '../public/diecezja-kielecka.png';
+import papiezFranciszek from '../public/papiez-franciszek.png';
 import sanktuariumFatimskie from '../public/sanktuarium-fatimskie.png';
 import wiaraPL from '../public/wiara-pl.png';
-import { NavbarLinkButton } from './nabvar-link-button';
-import { NavbarGroupButton } from './navbar-group-button';
+import { NavbarLinkButton, NavbarLinkButtonProps } from './nabvar-link-button';
+import { NavbarGroupButton, NavbarGroupButtonProps } from './navbar-group-button';
+import RecommendedLinkImage, { RecommendedLinkImageProps } from './recommended-link-image';
+
+type NavbarItem = NavbarLinkButtonProps | NavbarGroupButtonProps;
 
 type AppNavbarProps = {
   opened: boolean;
 };
 
-type NavbarLink = {
-  label: string;
-  icon: TablerIcon;
-  link: string;
-};
-
-type NavbarGroup = {
-  label: string;
-  icon: TablerIcon;
-  links: { label: string; link: string }[];
-};
-
-type NavbarItem = NavbarLink | NavbarGroup;
-
-const linkData: NavbarItem[] = [
+const navbarItemList: NavbarItem[] = [
   { label: 'Strona główna', icon: IconHome, link: '/' },
   { label: 'Historia', icon: IconBuildingChurch, link: '/historia' },
   { label: 'Ogłoszenia', icon: IconNews, link: '/ogloszenia' },
@@ -55,7 +42,7 @@ const linkData: NavbarItem[] = [
     ],
   },
   {
-    label: 'Dokumenty do Sakramentów',
+    label: 'Dok. do Sakramentów',
     icon: IconFiles,
     links: [
       { label: 'Sakrament Chrztu', link: '/dokumenty-do-sakramentow/sakrament-chrztu' },
@@ -66,12 +53,35 @@ const linkData: NavbarItem[] = [
   { label: 'Cmentarz', icon: IconBuildingMonument, link: '/cmentarz' },
 ];
 
+const RecommendedLinkImageList: RecommendedLinkImageProps[] = [
+  {
+    href: 'https://wiara.pl',
+    src: wiaraPL,
+    alt: 'Wiara.pl',
+  },
+  {
+    href: 'https://fatima.pt/pl/pages/transmisja-online',
+    src: sanktuariumFatimskie,
+    alt: 'Sanktuarium Fatimskie - Transmisja online',
+  },
+  {
+    href: 'https://diecezja.kielce.pl',
+    src: diecezjaKielecka,
+    alt: 'Diecezja kielecka',
+  },
+  {
+    href: 'https://twitter.com/Pontifex_pl',
+    src: papiezFranciszek,
+    alt: 'Tweety Papieża Franciszka',
+  },
+];
+
 export default function AppNavbar({ opened }: AppNavbarProps) {
-  const isNavbarGroup = (menuItem: NavbarItem): menuItem is NavbarGroup => {
-    return Array.isArray((menuItem as NavbarGroup).links);
+  const isNavbarGroup = (navbarItem: NavbarItem): navbarItem is NavbarGroupButtonProps => {
+    return Array.isArray((navbarItem as NavbarGroupButtonProps).links);
   };
 
-  const links = linkData.map((menuItem, index) => {
+  const navbarLinks = navbarItemList.map((menuItem, index) => {
     return isNavbarGroup(menuItem) ? (
       <NavbarGroupButton key={index} {...menuItem} />
     ) : (
@@ -79,44 +89,16 @@ export default function AppNavbar({ opened }: AppNavbarProps) {
     );
   });
 
+  const recommendedLinkImages = RecommendedLinkImageList.map((recommendedLinkImage, index) => (
+    <RecommendedLinkImage key={index} {...recommendedLinkImage} />
+  ));
+
   return (
     <Navbar width={{ sm: 200, lg: 300 }} height="auto" p="lg" hiddenBreakpoint="sm" hidden={!opened}>
-      {links}
+      {navbarLinks}
       <Stack align="center" mt="50px">
         <Title order={3}>Polecamy</Title>
-        <Stack spacing={0}>
-          <Link href="https://wiara.pl" passHref>
-            <Anchor component="a" target="_blank" rel="noopener noreferrer">
-              <Image src={wiaraPL} alt="Wiara.pl" width={558} height={200} quality={100}></Image>
-            </Anchor>
-          </Link>
-          <Link href="https://fatima.pt/pl/pages/transmisja-online" passHref>
-            <Anchor component="a" target="_blank" rel="noopener noreferrer">
-              <Image
-                src={sanktuariumFatimskie}
-                alt="Sanktuarium Fatimskie - Transmisja online"
-                width={558}
-                height={200}
-                quality={100}
-              ></Image>
-            </Anchor>
-          </Link>
-          <Link href="https://diecezja.kielce.pl" passHref>
-            <Anchor component="a" target="_blank" rel="noopener noreferrer">
-              <Image src={diecezjaKielecka} alt="Diecezja kielecka" width={558} height={200} quality={100}></Image>
-            </Anchor>
-          </Link>
-          <Anchor
-            className="twitter-timeline"
-            data-lang="pl"
-            data-width="259"
-            data-height="350"
-            href="https://twitter.com/Pontifex_pl?ref_src=twsrc%5Etfw"
-          >
-            Tweety użytkownika Pontifex_pl
-          </Anchor>{' '}
-          <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
-        </Stack>
+        <Stack spacing={0}>{recommendedLinkImages}</Stack>
       </Stack>
     </Navbar>
   );
