@@ -25,7 +25,7 @@ export default function ArticleBase({
 }: React.PropsWithChildren<ArticleBaseProps>) {
   const { classes } = useStyles();
   const { description, slug, image } = article;
-  const { alternativeText, width, height } = image.data.attributes;
+  const { url, alternativeText, width, height } = image.data.attributes;
   return (
     <article>
       <Stack className={classes.article} align="flex-start" justify="flex-start">
@@ -33,7 +33,7 @@ export default function ArticleBase({
         <Link href={`${categoryPath}/${slug}`} passHref>
           <Anchor component="a">
             <Image
-              src={getStrapiMedia(image)}
+              src={getStrapiMedia(url)}
               alt={alternativeText || ''}
               width={width}
               height={height}
