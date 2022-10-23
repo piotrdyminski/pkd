@@ -24,16 +24,17 @@ export default function ArticlesPage(props: InferGetServerSidePropsType<typeof g
     router.push(`/z-zycia-parafii?strona=${page}`);
   };
 
-  const articlePreviews = articles.map(({ attributes: article }, index) => (
-    <>
-      {index > 0 && <Divider className={classes.articleDivider} my="xl" size="xs" />}
-      <ArticlePreview key={index} article={article} categoryPath="/z-zycia-parafii"></ArticlePreview>
-    </>
-  ));
+  const articlePreviews =
+    articles?.map(({ attributes: article }, index) => (
+      <>
+        {index > 0 && <Divider className={classes.articleDivider} my="xl" size="xs" />}
+        <ArticlePreview key={index} article={article} categoryPath="/z-zycia-parafii"></ArticlePreview>
+      </>
+    )) ?? [];
 
   return (
     <Page title="Z życia parafii" breadcrumbs={breadcrumbs}>
-      {articlePreviews.length ? articlePreviews : <Text>Strona, której szukasz nie istnieje.</Text>}
+      {articlePreviews.length > 0 ? articlePreviews : <Text>Strona, której szukasz nie istnieje.</Text>}
       <Pagination page={page} total={pageCount} onChange={pageChanged} withEdges mt="xl" />
     </Page>
   );
@@ -44,10 +45,10 @@ export const getServerSideProps: GetServerSideProps<{ articles: StrapiApiRespons
 }) => {
   const page = query.strona || 1;
   const articles = await fetchAPI<StrapiApiResponse<ArticleModel>>('/articles', {
+    populate: ['image'],
+    sort: ['publishedAt:desc'],
     pagination: { page, pageSize: 10 },
-    populate: '*',
   });
-  console.log(articles);
   return {
     props: { articles },
   };

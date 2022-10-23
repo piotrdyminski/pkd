@@ -1,7 +1,5 @@
-import { StrapiApiImage, StrapiApiSingleResponse } from '../models/strapi';
 import { getStrapiURL } from './api';
 
-export const getStrapiMedia = (media: StrapiApiSingleResponse<StrapiApiImage>) => {
-  const { url } = media.data.attributes;
+export const getStrapiMedia = (url: string) => {
   return url.startsWith('/') ? getStrapiURL(url) : url;
 };

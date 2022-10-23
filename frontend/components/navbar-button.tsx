@@ -7,9 +7,8 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 500,
     display: 'block',
     width: '100%',
-    padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
+    padding: `${theme.spacing.xs}px`,
     color: theme.black,
-    fontSize: theme.fontSizes.sm,
 
     '&:hover, &.active': {
       backgroundColor: theme.colors.blue[1],
@@ -41,7 +40,7 @@ export const NavbarButton = forwardRef<HTMLAnchorElement, React.PropsWithChildre
             <ThemeIcon variant="light" size={30}>
               <Icon size={18} />
             </ThemeIcon>
-            <Box ml="md">{label}</Box>
+            <Box ml="sm">{label}</Box>
           </Box>
           {children}
         </Group>

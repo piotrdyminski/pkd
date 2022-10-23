@@ -34,14 +34,9 @@ export default function AppHeader({ opened, setOpened }: AppHeaderProps) {
         <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
           <Burger className={classes.burger} opened={opened} onClick={() => setOpened((o) => !o)} size="sm" />
         </MediaQuery>
-        <Image
-          className={classes.headerIcon}
-          width={38}
-          height={38}
-          src={headerIcon}
-          alt="Header icon"
-          unoptimized
-        ></Image>
+        <div style={{ height: 38, width: 38 }}>
+          <Image className={classes.headerIcon} src={headerIcon} alt="Header icon"></Image>
+        </div>
         <Stack className={classes.headerTitle} spacing={0}>
           <Title order={5}>Parafia Matki Bożej Fatimskiej</Title>
           <Title order={6}>Kielce-Dyminy</Title>

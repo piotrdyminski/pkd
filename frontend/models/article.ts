@@ -1,4 +1,4 @@
-import { StrapiApiBaseModel, StrapiApiImage, StrapiApiSingleResponse } from './strapi';
+import { StrapiApiBaseModel, StrapiApiImage, StrapiApiResponse, StrapiApiSingleResponse } from './strapi';
 
 export type ArticleModel = {
   slug: string;
@@ -6,4 +6,5 @@ export type ArticleModel = {
   description: string;
   content: string;
   image: StrapiApiSingleResponse<StrapiApiImage>;
+  images: StrapiApiResponse<StrapiApiImage>;
 } & StrapiApiBaseModel;

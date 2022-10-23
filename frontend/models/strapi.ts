@@ -5,12 +5,12 @@ export type StrapiApiBaseModel = {
 };
 
 export type StrapiApiResponse<T extends StrapiApiBaseModel> = {
-  data: StrapiApiData<T>[];
+  data: StrapiApiData<T>[] | null;
   meta: StrapiApiMetadata;
 };
 
 export type StrapiApiSingleResponse<T extends StrapiApiBaseModel> = {
-  data: StrapiApiData<T>;
+  data: StrapiApiData<T> | null;
   meta: StrapiApiMetadata;
 };
 

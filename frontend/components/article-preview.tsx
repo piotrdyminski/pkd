@@ -16,13 +16,16 @@ const useStyles = createStyles(() => ({
 
 export default function ArticlePreview({ article, categoryPath }: ArticlePreviewProps) {
   const { classes } = useStyles();
-  const { slug } = article;
+  const { slug, content, images } = article;
+  const hasAdditionalContent = content || images.data?.length;
   return (
     <ArticleBase article={article} categoryPath={categoryPath} preview={true}>
       <Link href={`${categoryPath}/${slug}`} passHref>
-        <Button className={classes.readMoreButton} component="a" variant="outline" size="xl">
-          Czytaj wiecej...
-        </Button>
+        {hasAdditionalContent && (
+          <Button className={classes.readMoreButton} component="a" variant="outline" size="xl">
+            Czytaj wiecej...
+          </Button>
+        )}
       </Link>
     </ArticleBase>
   );

@@ -6,7 +6,7 @@ import AppNavbar from './navbar';
 
 const useStyles = createStyles((theme) => ({
   root: {
-    maxWidth: '1200px',
+    maxWidth: '1280px',
     margin: 'auto',
   },
   body: {
