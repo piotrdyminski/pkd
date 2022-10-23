@@ -14,15 +14,13 @@ export default function ArticlePage(props: InferGetStaticPropsType<typeof getSta
     ...(article ? [{ label: article.title }] : []),
   ];
 
-  return (
-    <Page breadcrumbs={breadcrumbs}>
-      {article ? (
-        <Article article={article} categoryPath="/z-zycia-parafii" />
-      ) : (
-        <Text>Strona, której szukasz nie istnieje.</Text>
-      )}
-    </Page>
+  const articleContent = article ? (
+    <Article article={article} categoryPath="/z-zycia-parafii" />
+  ) : (
+    <Text>Strona, której szukasz nie istnieje.</Text>
   );
+
+  return <Page breadcrumbs={breadcrumbs}>{articleContent}</Page>;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
