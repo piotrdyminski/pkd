@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "confirmations",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "confirmation",
+    "pluralName": "confirmations",
+    "displayName": "Sakrament Bierzmowania",
     "description": ""
   },
   "options": {

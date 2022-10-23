@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "children_scholas",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "children-schola",
+    "pluralName": "children-scholas",
+    "displayName": "Schola Dziecięca",
     "description": ""
   },
   "options": {

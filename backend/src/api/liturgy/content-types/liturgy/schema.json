@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "liturgies",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "liturgy",
+    "pluralName": "liturgies",
+    "displayName": "Liturgia",
     "description": ""
   },
   "options": {

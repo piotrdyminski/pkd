@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "youth_scholas",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "youth-schola",
+    "pluralName": "youth-scholas",
+    "displayName": "Schola Młodzieżowa",
     "description": ""
   },
   "options": {

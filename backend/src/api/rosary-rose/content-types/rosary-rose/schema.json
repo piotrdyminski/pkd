@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "rosary_roses",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "rosary-rose",
+    "pluralName": "rosary-roses",
+    "displayName": "Róże Różańcowe",
     "description": ""
   },
   "options": {

@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "choirs",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "choir",
+    "pluralName": "choirs",
+    "displayName": "Chór",
     "description": ""
   },
   "options": {

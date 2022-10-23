@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "firefighters",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "firefighter",
+    "pluralName": "firefighters",
+    "displayName": "Strażacy",
     "description": ""
   },
   "options": {

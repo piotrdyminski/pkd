@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "altar_boys",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "altar-boy",
+    "pluralName": "altar-boys",
+    "displayName": "Ministranci",
     "description": ""
   },
   "options": {

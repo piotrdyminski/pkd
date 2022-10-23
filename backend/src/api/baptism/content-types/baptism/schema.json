@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "baptisms",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "baptism",
+    "pluralName": "baptisms",
+    "displayName": "Sakrament Chrztu",
     "description": ""
   },
   "options": {

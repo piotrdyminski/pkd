@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "eucharists",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "eucharist",
+    "pluralName": "eucharists",
+    "displayName": "Sakrament Eucharystii",
     "description": ""
   },
   "options": {

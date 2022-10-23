@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "marriages",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "marriage",
+    "pluralName": "marriages",
+    "displayName": "Sakrament Małżeństwa",
     "description": ""
   },
   "options": {

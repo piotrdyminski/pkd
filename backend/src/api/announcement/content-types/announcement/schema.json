@@ -1,10 +1,10 @@
 {
-  "kind": "collectionType",
+  "kind": "singleType",
   "collectionName": "announcements",
   "info": {
     "singularName": "announcement",
     "pluralName": "announcements",
-    "displayName": "Ogłoszenia",
+    "displayName": "Ogłoszenia duszpasterskie",
     "description": ""
   },
   "options": {
@@ -12,40 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "pluginOptions": {},
-      "type": "string",
-      "required": true
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title",
-      "required": true
-    },
-    "description": {
-      "type": "string",
-      "required": true
-    },
     "content": {
       "pluginOptions": {},
       "type": "richtext",
       "required": true
-    },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ],
-      "pluginOptions": {}
-    },
-    "images": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": true
     }
   }
 }

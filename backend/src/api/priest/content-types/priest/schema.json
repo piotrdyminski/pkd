@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "intentions",
+  "collectionName": "priests",
   "info": {
-    "singularName": "intention",
-    "pluralName": "intentions",
-    "displayName": "Intencje Mszalne",
+    "singularName": "priest",
+    "pluralName": "priests",
+    "displayName": "Duszpasterze",
     "description": ""
   },
   "options": {
