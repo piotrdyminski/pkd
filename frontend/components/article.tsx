@@ -14,7 +14,7 @@ export default function Article({ article, categoryPath }: ArticleProps) {
   return (
     <ArticleBase article={article} categoryPath={categoryPath} preview={false}>
       <ReactMarkdown>{content}</ReactMarkdown>
-      <Gallery images={imagesList}></Gallery>
+      {imagesList.length > 0 && <Gallery images={imagesList}></Gallery>}
     </ArticleBase>
   );
 }

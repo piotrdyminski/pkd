@@ -20,21 +20,22 @@ const useStyles = createStyles((theme) => ({
 export default function Page({ title, breadcrumbs, children }: React.PropsWithChildren<PageProps>) {
   const { classes } = useStyles();
 
-  const breadcrumbItems = breadcrumbs?.map(({ label, href }, index) =>
-    href ? (
-      <Link key={index} href={href} passHref>
-        <Anchor component="a" underline={false}>
-          {label}
-        </Anchor>
-      </Link>
-    ) : (
-      <Text key={index}>{label}</Text>
-    )
-  );
+  const breadcrumbItems =
+    breadcrumbs?.map(({ label, href }, index) =>
+      href ? (
+        <Link key={index} href={href} passHref>
+          <Anchor component="a" underline={false}>
+            {label}
+          </Anchor>
+        </Link>
+      ) : (
+        <Text key={index}>{label}</Text>
+      )
+    ) ?? [];
 
   return (
     <Stack align="center" justify="flex-start" spacing="xl">
-      {breadcrumbs?.length && <Breadcrumbs className={classes.breadcrumbs}>{breadcrumbItems}</Breadcrumbs>}
+      {breadcrumbItems.length > 0 && <Breadcrumbs className={classes.breadcrumbs}>{breadcrumbItems}</Breadcrumbs>}
       {title && (
         <>
           <Title order={1} align="center">

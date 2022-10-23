@@ -25,22 +25,24 @@ export default function ArticleBase({
 }: React.PropsWithChildren<ArticleBaseProps>) {
   const { classes } = useStyles();
   const { description, slug, image } = article;
-  const { url, alternativeText, width, height } = image.data.attributes;
+  const { url, alternativeText, width, height } = image.data?.attributes ?? {};
   return (
     <article>
       <Stack className={classes.article} align="flex-start" justify="flex-start">
         <ArticleTitle article={article} categoryPath={categoryPath} preview={preview} />
-        <Link href={`${categoryPath}/${slug}`} passHref>
-          <Anchor component="a">
-            <Image
-              src={getStrapiMedia(url)}
-              alt={alternativeText || ''}
-              width={width}
-              height={height}
-              quality={100}
-            ></Image>
-          </Anchor>
-        </Link>
+        {url && (
+          <Link href={`${categoryPath}/${slug}`} passHref>
+            <Anchor component="a">
+              <Image
+                src={getStrapiMedia(url)}
+                alt={alternativeText || ''}
+                width={width}
+                height={height}
+                quality={100}
+              ></Image>
+            </Anchor>
+          </Link>
+        )}
         <Text>{description}</Text>
         {children}
       </Stack>
