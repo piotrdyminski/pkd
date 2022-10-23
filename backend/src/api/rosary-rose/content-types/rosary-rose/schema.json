@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "rosary_roses",
+  "info": {
+    "singularName": "rosary-rose",
+    "pluralName": "rosary-roses",
+    "displayName": "Róże Różańcowe",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

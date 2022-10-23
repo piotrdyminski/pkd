@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "youth_scholas",
+  "info": {
+    "singularName": "youth-schola",
+    "pluralName": "youth-scholas",
+    "displayName": "Schola Młodzieżowa",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { MantineProvider } from '@mantine/core';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { CustomFonts } from '../components/custom-fonts';
 import Layout from '../components/layout';
 
 export default function App(props: AppProps) {
@@ -19,10 +20,10 @@ export default function App(props: AppProps) {
         withNormalizeCSS
         theme={{
           colorScheme: 'light',
-          fontFamily: 'Georgia, serif',
-          headings: { fontFamily: 'Georgia, serif' },
+          headings: { fontFamily: 'Cinzel, serif' },
         }}
       >
+        <CustomFonts />
         <Layout>
           <Component {...pageProps} />
         </Layout>
