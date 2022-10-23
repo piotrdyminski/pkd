@@ -1,11 +1,32 @@
+const modelName = "api::view-counter.view-counter";
+const idValue = 1;
+const viewCountField = "view_count";
+
+const _getViewCount = async () => {
+  const viewCountModel = await strapi.entityService.findOne(
+    modelName,
+    idValue,
+    {
+      fields: [viewCountField],
+    }
+  );
+  const viewCount = viewCountModel ? viewCountModel[viewCountField] : 0;
+  return viewCount;
+};
+
 module.exports = {
+  getViewCount: async () => {
+    try {
+      return await _getViewCount();
+    } catch (err) {
+      return err;
+    }
+  },
+
   incrementViewCount: async () => {
     try {
       const tableName = "view_counters";
-      const modelName = "api::view-counter.view-counter";
-      const idValue = 1;
       const idField = "id";
-      const viewCountField = "view_count";
 
       const viewCountExists = await strapi.entityService.findOne(
         modelName,
@@ -18,23 +39,14 @@ module.exports = {
             view_count: 1,
           },
         });
+      } else {
+        await strapi.db
+          .connection(tableName)
+          .where(idField, idValue)
+          .increment(viewCountField, 1);
       }
 
-      await strapi.db
-        .connection(tableName)
-        .where(idField, idValue)
-        .increment(viewCountField, 1);
-
-      const viewCountModel = await strapi.entityService.findOne(
-        modelName,
-        idValue,
-        {
-          fields: [viewCountField],
-        }
-      );
-
-      const viewCount = viewCountModel[viewCountField];
-      return viewCount;
+      return await _getViewCount();
     } catch (err) {
       return err;
     }
