@@ -22,8 +22,9 @@ export const fetchAPI = async <T>(
   const response = await fetch(requestUrl, mergedOptions);
 
   if (!response.ok) {
-    console.error(response.statusText);
-    throw new Error('An error occurred please try again');
+    const errorMessage = `An error occurred while calling API: ${response.statusText}`;
+    console.error(errorMessage);
+    throw new Error(errorMessage);
   }
   return await response.json();
 };

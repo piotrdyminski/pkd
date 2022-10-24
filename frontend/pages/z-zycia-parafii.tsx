@@ -1,6 +1,7 @@
 import { createStyles, Divider, Pagination, Text } from '@mantine/core';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
+import React from 'react';
 import ArticlePreview from '../components/article-preview';
 import Page from '../components/page';
 import { fetchAPI } from '../lib/api';
@@ -26,10 +27,10 @@ export default function ArticlesPage(props: InferGetServerSidePropsType<typeof g
 
   const articlePreviews =
     articles?.map(({ attributes: article }, index) => (
-      <>
+      <React.Fragment key={index}>
         {index > 0 && <Divider className={classes.articleDivider} my="xl" size="xs" />}
-        <ArticlePreview key={index} article={article} categoryPath="/z-zycia-parafii"></ArticlePreview>
-      </>
+        <ArticlePreview article={article} categoryPath="/z-zycia-parafii"></ArticlePreview>
+      </React.Fragment>
     )) ?? [];
 
   return (
