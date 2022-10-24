@@ -1,4 +1,4 @@
-import { Navbar, Stack, Title } from '@mantine/core';
+import { Navbar } from '@mantine/core';
 import {
   IconAddressBook,
   IconAlbum,
@@ -11,13 +11,11 @@ import {
   IconNews,
   IconPray,
 } from '@tabler/icons';
-import diecezjaKielecka from '../public/diecezja-kielecka.png';
-import papiezFranciszek from '../public/papiez-franciszek.png';
-import sanktuariumFatimskie from '../public/sanktuarium-fatimskie.png';
-import wiaraPL from '../public/wiara-pl.png';
+
 import { NavbarLinkButton, NavbarLinkButtonProps } from './nabvar-link-button';
 import { NavbarGroupButton, NavbarGroupButtonProps } from './navbar-group-button';
-import RecommendedLinkImage, { RecommendedLinkImageProps } from './recommended-link-image';
+import RecommendedLinks from './recommended-links';
+import ViewCounter from './view-counter';
 
 type NavbarItem = NavbarLinkButtonProps | NavbarGroupButtonProps;
 
@@ -53,29 +51,6 @@ const navbarItemList: NavbarItem[] = [
   { label: 'Cmentarz', icon: IconBuildingMonument, link: '/cmentarz' },
 ];
 
-const RecommendedLinkImageList: RecommendedLinkImageProps[] = [
-  {
-    href: 'https://wiara.pl',
-    src: wiaraPL,
-    alt: 'Wiara.pl',
-  },
-  {
-    href: 'https://fatima.pt/pl/pages/transmisja-online',
-    src: sanktuariumFatimskie,
-    alt: 'Sanktuarium Fatimskie - Transmisja online',
-  },
-  {
-    href: 'https://diecezja.kielce.pl',
-    src: diecezjaKielecka,
-    alt: 'Diecezja kielecka',
-  },
-  {
-    href: 'https://twitter.com/Pontifex_pl',
-    src: papiezFranciszek,
-    alt: 'Tweety Papieża Franciszka',
-  },
-];
-
 export default function AppNavbar({ opened }: AppNavbarProps) {
   const isNavbarGroup = (navbarItem: NavbarItem): navbarItem is NavbarGroupButtonProps => {
     return Array.isArray((navbarItem as NavbarGroupButtonProps).links);
@@ -89,17 +64,11 @@ export default function AppNavbar({ opened }: AppNavbarProps) {
     );
   });
 
-  const recommendedLinkImages = RecommendedLinkImageList.map((recommendedLinkImage, index) => (
-    <RecommendedLinkImage key={index} {...recommendedLinkImage} />
-  ));
-
   return (
     <Navbar width={{ sm: 200, lg: 300 }} height="auto" p="lg" hiddenBreakpoint="sm" hidden={!opened}>
       {navbarLinks}
-      <Stack align="center" mt="50px">
-        <Title order={3}>Polecamy</Title>
-        <Stack spacing={0}>{recommendedLinkImages}</Stack>
-      </Stack>
+      <RecommendedLinks />
+      <ViewCounter />
     </Navbar>
   );
 }
