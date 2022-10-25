@@ -7,10 +7,17 @@ type PageProps = {
 };
 
 const useStyles = createStyles((theme) => ({
+  page: {
+    padding: '40px',
+    [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+      padding: '30px',
+    },
+  },
   breadcrumbs: {
     alignSelf: 'flex-start',
     flexWrap: 'wrap',
     fontSize: theme.fontSizes.sm,
+    fontWeight: 500,
   },
   mainDivider: {
     width: '50%',
@@ -34,7 +41,7 @@ export default function Page({ title, breadcrumbs, children }: React.PropsWithCh
     ) ?? [];
 
   return (
-    <Stack align="center" justify="flex-start" spacing="xl">
+    <Stack className={classes.page} align="center" justify="flex-start" spacing="xl">
       {breadcrumbItems.length > 0 && <Breadcrumbs className={classes.breadcrumbs}>{breadcrumbItems}</Breadcrumbs>}
       {title && (
         <>

@@ -21,6 +21,29 @@ export default function App(props: AppProps) {
         theme={{
           colorScheme: 'light',
           headings: { fontFamily: 'Cinzel, serif' },
+          components: {
+            UnstyledButton: {
+              styles: {
+                root: {
+                  fontFamily: 'Cinzel, serif',
+                },
+              },
+            },
+            Button: {
+              styles: {
+                root: {
+                  fontFamily: 'Cinzel, serif',
+                },
+              },
+            },
+            Text: {
+              styles: {
+                root: {
+                  lineHeight: 1.7,
+                },
+              },
+            },
+          },
         }}
       >
         <CustomFonts />

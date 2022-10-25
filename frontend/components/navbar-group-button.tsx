@@ -1,4 +1,4 @@
-import { Collapse, createStyles, Text } from '@mantine/core';
+import { Anchor, Collapse, createStyles } from '@mantine/core';
 import { IconChevronRight, TablerIcon } from '@tabler/icons';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,7 +7,8 @@ import { NavbarButton } from './navbar-button';
 
 const useStyles = createStyles((theme) => ({
   link: {
-    fontWeight: 500,
+    fontFamily: 'Cinzel, serif',
+    fontWeight: 700,
     display: 'block',
     textDecoration: 'none',
     padding: `${theme.spacing.xs}px`,
@@ -40,9 +41,9 @@ export function NavbarGroupButton({ icon, label, links }: NavbarGroupButtonProps
 
   const items = links.map((link, index) => (
     <Link href={link.link} key={index} passHref>
-      <Text component="a" className={`${classes.link} ${router.pathname.startsWith(link.link) ? 'active' : ''}`}>
+      <Anchor className={`${classes.link} ${router.pathname.startsWith(link.link) ? 'active' : ''}`}>
         {link.label}
-      </Text>
+      </Anchor>
     </Link>
   ));
   return (

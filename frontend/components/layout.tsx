@@ -8,16 +8,16 @@ const useStyles = createStyles((theme) => ({
   root: {
     maxWidth: '1280px',
     margin: 'auto',
+    overflow: 'hidden',
   },
   body: {
-    marginTop: '5px',
-    borderTop: `1px solid ${theme.colors.gray[2]}`,
-    borderLeft: `1px solid ${theme.colors.gray[2]}`,
-    borderRight: `1px solid ${theme.colors.gray[2]}`,
+    borderBottom: `1px solid ${theme.colors.gray[2]}`,
   },
   main: {
-    background: theme.colors.gray[0],
-    padding: theme.spacing.lg,
+    padding: 0,
+    [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+      marginTop: '70px',
+    },
   },
 }));
 
@@ -35,7 +35,6 @@ export default function Layout({ children }: React.PropsWithChildren<unknown>) {
       header={<AppHeader {...{ opened, setOpened }} />}
       navbar={<AppNavbar {...{ opened }} />}
       footer={<AppFooter />}
-      navbarOffsetBreakpoint="sm"
       fixed={false}
     >
       {children}

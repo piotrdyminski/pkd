@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 
 const useStyles = createStyles((theme) => ({
   control: {
-    fontWeight: 500,
+    fontWeight: 700,
     display: 'block',
     width: '100%',
     padding: `${theme.spacing.xs}px`,
@@ -35,7 +35,7 @@ export const NavbarButton = forwardRef<HTMLAnchorElement, React.PropsWithChildre
         className={`${classes.control} ${active ? 'active' : ''}`}
         onClick={onClick}
       >
-        <Group position="apart" spacing={0}>
+        <Group spacing={10}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <ThemeIcon variant="light" size={30}>
               <Icon size={18} />

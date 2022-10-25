@@ -5,7 +5,7 @@ import { formatNumber } from '../lib/utils';
 const ONE_HOUR = 60 * 60 * 1000;
 
 export default function ViewCounter() {
-  const [viewCount, setViewCount] = useState<string>('');
+  const [viewCount, setViewCount] = useState('');
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function ViewCounter() {
   }, []);
 
   return (
-    <Stack align="center" mt="50px" spacing={0}>
+    <Stack align="center" spacing={0}>
       <Title order={4} align="center">
         Liczba odwiedzin
       </Title>
