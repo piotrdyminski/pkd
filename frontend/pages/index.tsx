@@ -1,63 +1,20 @@
-import { Box, Button, createStyles, Divider, Group, Stack, Text, Title } from '@mantine/core';
-import Image from 'next/image';
-import mainImage from '../public/main-image.png';
+import { createStyles, Divider, Group, Stack, Text, Title } from '@mantine/core';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { ArticleCard } from '../components/article-card';
+import { Cover } from '../components/cover';
+import { fetchAPI } from '../lib/api';
+import { ArticleModel } from '../models/article';
+import { StrapiApiResponse } from '../models/strapi';
 
 const useStyles = createStyles((theme) => ({
-  cover: {
-    position: 'absolute',
-    padding: `${theme.spacing.lg}px ${theme.spacing.lg}px 50px ${theme.spacing.lg}px`,
-    height: '100%',
-    background: 'transparent',
-    zIndex: 1,
-    color: 'white',
-    textShadow: '0px 0px 10px rgba(0,0,0)',
-    fontSize: '50px',
-  },
-  mainTitle: {
-    fontSize: '45px',
-    [`@media (max-width: ${theme.breakpoints.xs}px)`]: {
-      fontSize: '30px',
-    },
-    ['@media (max-width: 320px)']: {
-      fontSize: '25px',
-    },
-  },
-  subTitle: {
-    fontSize: '35px',
-    [`@media (max-width: ${theme.breakpoints.xs}px)`]: {
-      fontSize: '24px',
-    },
-    ['@media (max-width: 320px)']: {
-      fontSize: '20px',
-    },
-  },
-  coverButtons: {
-    width: '100%',
-    marginTop: 'auto',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    gap: '50px',
-  },
-  newsButton: {
-    transition: '0.3s',
-    '&:hover': {
-      backgroundColor: 'rgba(34, 139, 230, 0.7)',
-    },
-  },
-  intentionsButton: {
-    color: theme.colors.gray[0],
-    background: 'transparent',
-    transition: '0.3s',
-    '&:hover': {
-      color: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
-    },
-  },
   divider: {
     width: '75%',
     alignSelf: 'center',
   },
   content: {
     padding: '40px',
+    alignItems: 'center',
+    gap: '60px',
     [`@media (max-width: ${theme.breakpoints.md}px)`]: {
       padding: '30px',
     },
@@ -88,43 +45,28 @@ const useStyles = createStyles((theme) => ({
       textTransform: 'uppercase',
     },
   },
+  articlePreview: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  articleCards: {
+    width: '100%',
+    justifyContent: 'space-evenly',
+    alignItems: 'flex-start',
+  },
 }));
 
-export default function IndexPage() {
+export default function IndexPage(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { classes } = useStyles();
+  const { data: articles } = props.articles;
+
+  const articleCards =
+    articles?.map(({ attributes: article }, index) => <ArticleCard key={index} article={article} />) ?? [];
 
   return (
     <Stack>
-      <Box sx={{ position: 'relative', minHeight: 552 }}>
-        <Stack className={classes.cover} justify="flex-start" align="center">
-          <Title order={1} className={classes.mainTitle} align="center">
-            Parafia Rzymskokatolicka pw. Matki Bożej Fatimskiej
-          </Title>
-          <Title order={2} className={classes.subTitle} align="center">
-            Kielce-Dyminy
-          </Title>
-          <Group className={classes.coverButtons} align="center">
-            <Button className={classes.newsButton} size="xl">
-              Ogłoszenia
-            </Button>
-            <Button className={classes.intentionsButton} variant="default" size="xl">
-              Intencje mszalne
-            </Button>
-          </Group>
-        </Stack>
-        <Image
-          src={mainImage}
-          alt="Zdjęcie główne"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
-          quality={100}
-          priority
-        ></Image>
-      </Box>
-
+      <Cover />
       <Divider className={classes.divider} size="sm" />
-
       <Stack className={classes.content}>
         <Group className={classes.mainText}>
           <Text className={classes.firstParagraph} inherit>
@@ -148,7 +90,24 @@ export default function IndexPage() {
             pamiątek po Janie Pawle II.
           </Text>
         </Group>
+        {articleCards.length > 0 && (
+          <Stack className={classes.articlePreview} spacing="xl">
+            <Title order={1}>Z życia parafii</Title>
+            <Group className={classes.articleCards}>{articleCards}</Group>
+          </Stack>
+        )}
       </Stack>
     </Stack>
   );
 }
+
+export const getServerSideProps: GetServerSideProps<{ articles: StrapiApiResponse<ArticleModel> }> = async () => {
+  const articles = await fetchAPI<StrapiApiResponse<ArticleModel>>('/articles', {
+    populate: ['image'],
+    sort: ['publishedAt:desc'],
+    pagination: { start: 0, limit: 2 },
+  });
+  return {
+    props: { articles },
+  };
+};

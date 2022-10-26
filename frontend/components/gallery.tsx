@@ -2,7 +2,7 @@ import { Carousel } from '@mantine/carousel';
 import { Anchor, createStyles, Grid, Modal } from '@mantine/core';
 import Image from 'next/image';
 import { useState } from 'react';
-import { getStrapiMedia } from '../lib/media';
+import { getResponsiveImageUrl, getStrapiMedia } from '../lib/media';
 import { StrapiApiImage } from '../models/strapi';
 
 const useStyles = createStyles(() => ({
@@ -38,9 +38,6 @@ export default function Gallery({ images }: GalleryProps) {
   const { classes } = useStyles();
   const [opened, setOpened] = useState(false);
   const [carouselInitialSlide, setCarouselInitialSlide] = useState(1);
-
-  const getResponsiveImageUrl = ({ url, formats }: StrapiApiImage) =>
-    formats?.small?.url ?? formats?.thumbnail?.url ?? url;
 
   const imageClicked = (imageIndex: number) => {
     setCarouselInitialSlide(imageIndex);
