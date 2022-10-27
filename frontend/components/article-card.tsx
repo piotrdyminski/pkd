@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { getResponsiveImageUrl, getStrapiMedia } from '../lib/media';
 import { ArticleModel } from '../models/article';
 
-type ArticlePreviewProps = {
+type ArticleCardProps = {
   article: ArticleModel;
 };
 
@@ -18,7 +18,7 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-export function ArticleCard({ article }: ArticlePreviewProps) {
+export function ArticleCard({ article }: ArticleCardProps) {
   const { classes } = useStyles();
   const { slug, title, description, image } = article;
   const href = `/z-zycia-parafii/${slug}`;
@@ -31,7 +31,7 @@ export function ArticleCard({ article }: ArticlePreviewProps) {
           <Link href={href} passHref>
             <Anchor component="a">
               <Image
-                src={getStrapiMedia(getResponsiveImageUrl(imageObject))}
+                src={getStrapiMedia(getResponsiveImageUrl(imageObject, ['small', 'thumbnail']))}
                 alt={imageObject.alternativeText || ''}
                 layout="fill"
                 objectFit="cover"

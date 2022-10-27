@@ -1,4 +1,4 @@
-import { createStyles, MediaQuery, Navbar, Stack } from '@mantine/core';
+import { createStyles, Navbar, Stack } from '@mantine/core';
 import {
   IconAddressBook,
   IconAlbum,
@@ -52,10 +52,15 @@ const navbarItemList: NavbarItem[] = [
   { label: 'Cmentarz', icon: IconBuildingMonument, link: '/cmentarz' },
 ];
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   navbar: {
     gap: '40px',
     boxShadow: '-5px 0px 15px 0px rgba(0, 0, 0, 0.1)',
+    [`@media (max-width: ${theme.breakpoints.md - 1}px)`]: {
+      position: 'fixed',
+      width: '100%',
+      overflow: 'auto',
+    },
   },
 }));
 
@@ -75,20 +80,20 @@ export default function AppNavbar({ opened }: AppNavbarProps) {
   });
 
   return (
-    <MediaQuery smallerThan="md" styles={{ position: 'fixed', width: '100%', overflow: 'auto' }}>
-      <Navbar
-        className={classes.navbar}
-        width={{ base: 300 }}
-        height="auto"
-        p="lg"
-        hiddenBreakpoint="md"
-        hidden={!opened}
-      >
-        <NavbarHeader />
-        <Stack spacing={0}>{navbarLinks}</Stack>
+    <Navbar
+      className={classes.navbar}
+      width={{ base: 300 }}
+      height="auto"
+      p="lg"
+      hiddenBreakpoint="md"
+      hidden={!opened}
+    >
+      <NavbarHeader />
+      <Stack spacing={0}>{navbarLinks}</Stack>
+      <Stack align="center" spacing="xl">
         <RecommendedLinks />
         <ViewCounter />
-      </Navbar>
-    </MediaQuery>
+      </Stack>
+    </Navbar>
   );
 }

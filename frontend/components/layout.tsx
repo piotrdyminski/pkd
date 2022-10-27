@@ -15,7 +15,7 @@ const useStyles = createStyles((theme) => ({
   },
   main: {
     padding: 0,
-    [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+    [`@media (max-width: ${theme.breakpoints.md - 1}px)`]: {
       marginTop: '70px',
     },
   },

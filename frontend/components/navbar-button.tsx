@@ -8,7 +8,6 @@ const useStyles = createStyles((theme) => ({
     display: 'block',
     width: '100%',
     padding: `${theme.spacing.xs}px`,
-    color: theme.black,
 
     '&:hover, &.active': {
       backgroundColor: theme.colors.blue[1],

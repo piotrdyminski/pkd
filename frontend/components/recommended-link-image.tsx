@@ -12,7 +12,7 @@ export default function RecommendedLinkImage({ href, src, alt }: RecommendedLink
   return (
     <Link href={href} passHref>
       <Anchor component="a" target="_blank" rel="noopener noreferrer">
-        <Image src={src} alt={alt} quality={100}></Image>
+        <Image src={src} alt={alt} quality={100} />
       </Anchor>
     </Link>
   );

@@ -1,5 +1,6 @@
 import { Box, Button, createStyles, Group, Stack, Title } from '@mantine/core';
 import Image from 'next/image';
+import Link from 'next/link';
 import coverImage from '../public/cover-image.png';
 
 const useStyles = createStyles((theme) => ({
@@ -54,6 +55,7 @@ const useStyles = createStyles((theme) => ({
     transition: '0.3s',
     '&:hover': {
       color: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
+      textShadow: 'none',
     },
   },
 }));
@@ -70,12 +72,16 @@ export function Cover() {
           Kielce-Dyminy
         </Title>
         <Group className={classes.coverButtons} align="center">
-          <Button className={classes.newsButton} size="xl">
-            Ogłoszenia
-          </Button>
-          <Button className={classes.intentionsButton} variant="default" size="xl">
-            Intencje mszalne
-          </Button>
+          <Link href="/ogloszenia-duszpasterskie" passHref>
+            <Button className={classes.newsButton} component="a" size="xl">
+              Ogłoszenia
+            </Button>
+          </Link>
+          <Link href="/intencje-mszalne" passHref>
+            <Button className={classes.intentionsButton} component="a" variant="default" size="xl">
+              Intencje mszalne
+            </Button>
+          </Link>
         </Group>
       </Stack>
       <Image
@@ -86,7 +92,7 @@ export function Cover() {
         objectPosition="center"
         quality={100}
         priority
-      ></Image>
+      />
     </Box>
   );
 }

@@ -1,4 +1,5 @@
-import { createStyles, Divider, Stack, Title } from '@mantine/core';
+import { Anchor, createStyles, Divider, Stack, Title } from '@mantine/core';
+import Link from 'next/link';
 import Logo from './logo';
 
 const useStyles = createStyles((theme) => ({
@@ -8,11 +9,22 @@ const useStyles = createStyles((theme) => ({
     alignItems: 'center',
     textAlign: 'center',
     gap: '10px',
-    [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+    [`@media (max-width: ${theme.breakpoints.md - 1}px)`]: {
       display: 'none',
     },
   },
-  mainTitle: {},
+  logo: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center',
+    gap: '10px',
+    color: 'initial',
+    '&:hover': {
+      textDecoration: 'none',
+    },
+  },
+  mainTitle: { textDecoration: 'none' },
   subTitle: {
     color: theme.colors.gray[7],
   },
@@ -27,15 +39,19 @@ export default function NavbarHeader() {
 
   return (
     <header className={classes.header}>
-      <Logo />
-      <Stack spacing={0}>
-        <Title order={3} className={classes.mainTitle}>
-          Parafia Matki Bożej Fatimskiej
-        </Title>
-        <Title order={4} className={classes.subTitle}>
-          Kielce-Dyminy
-        </Title>
-      </Stack>
+      <Link href="/" passHref>
+        <Anchor component="a" className={classes.logo}>
+          <Logo />
+          <Stack spacing={0}>
+            <Title order={3} className={classes.mainTitle}>
+              Parafia Matki Bożej Fatimskiej
+            </Title>
+            <Title order={4} className={classes.subTitle}>
+              Kielce-Dyminy
+            </Title>
+          </Stack>
+        </Anchor>
+      </Link>
       <Divider className={classes.divider} my={0} size="sm" />
     </header>
   );

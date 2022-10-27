@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
 
     '&:hover, &.active': {
       backgroundColor: theme.colors.blue[1],
-      color: theme.black,
+      color: 'initial',
     },
   },
 

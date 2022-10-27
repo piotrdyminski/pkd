@@ -1,5 +1,5 @@
 import { Carousel } from '@mantine/carousel';
-import { Anchor, createStyles, Grid, Modal } from '@mantine/core';
+import { AspectRatio, createStyles, Grid, Modal } from '@mantine/core';
 import Image from 'next/image';
 import { useState } from 'react';
 import { getResponsiveImageUrl, getStrapiMedia } from '../lib/media';
@@ -13,7 +13,7 @@ const useStyles = createStyles(() => ({
   imageWrapper: {
     display: 'block',
     position: 'relative',
-    aspectRatio: '1/1',
+    cursor: 'pointer',
   },
   modal: {
     background: 'rgba(0, 0, 0, 0.8)',
@@ -46,28 +46,22 @@ export default function Gallery({ images }: GalleryProps) {
 
   const gridImages = images.map((image, index) => (
     <Grid.Col key={index} span={3}>
-      <Anchor className={classes.imageWrapper} onClick={() => imageClicked(index)}>
+      <AspectRatio ratio={1 / 1} className={classes.imageWrapper} onClick={() => imageClicked(index)}>
         <Image
-          src={getStrapiMedia(getResponsiveImageUrl(image))}
+          src={getStrapiMedia(getResponsiveImageUrl(image, ['small', 'thumbnail']))}
           alt={image.alternativeText || ''}
           layout="fill"
           objectFit="cover"
           objectPosition="center"
           quality={100}
-        ></Image>
-      </Anchor>
+        />
+      </AspectRatio>
     </Grid.Col>
   ));
 
   const carouselImages = images.map(({ url, alternativeText }, index) => (
     <Carousel.Slide key={index}>
-      <Image
-        src={getStrapiMedia(url)}
-        alt={alternativeText || ''}
-        layout="fill"
-        objectFit="scale-down"
-        quality={100}
-      ></Image>
+      <Image src={getStrapiMedia(url)} alt={alternativeText || ''} layout="fill" objectFit="scale-down" quality={100} />
     </Carousel.Slide>
   ));
 

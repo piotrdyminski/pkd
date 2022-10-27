@@ -20,13 +20,13 @@ export default function ArticlePreview({ article, categoryPath }: ArticlePreview
   const hasAdditionalContent = content || images.data?.length;
   return (
     <ArticleBase article={article} categoryPath={categoryPath} preview={true}>
-      <Link href={`${categoryPath}/${slug}`} passHref>
-        {hasAdditionalContent && (
+      {hasAdditionalContent && (
+        <Link href={`${categoryPath}/${slug}`} passHref>
           <Button className={classes.readMoreButton} component="a" variant="outline" size="xl">
             Czytaj wiecej...
           </Button>
-        )}
-      </Link>
+        </Link>
+      )}
     </ArticleBase>
   );
 }

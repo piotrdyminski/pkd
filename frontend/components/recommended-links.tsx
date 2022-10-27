@@ -34,7 +34,7 @@ export default function RecommendedLinks() {
   ));
 
   return (
-    <Stack align="center">
+    <Stack align="center" sx={{ maxWidth: '300px' }}>
       <Title order={3} align="center">
         Polecamy
       </Title>
