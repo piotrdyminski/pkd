@@ -7,8 +7,8 @@ export const getStrapiMedia = (url: string) => {
 
 export const getResponsiveImageUrl = (
   { url, formats }: StrapiApiImage,
-  formatOrder: (keyof StrapiApiImage['formats'])[] = []
+  formatPriority: (keyof StrapiApiImage['formats'])[] = []
 ) => {
-  const format = formatOrder.find((f) => formats?.[f]);
+  const format = formatPriority.find((f) => formats?.[f]);
   return format ? formats?.[format]?.url : url;
 };
