@@ -1,4 +1,4 @@
-import { Anchor, createStyles, Stack, Text } from '@mantine/core';
+import { Anchor, createStyles, Text } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getResponsiveImageUrl, getStrapiMedia } from '../lib/media';
@@ -15,6 +15,11 @@ type ArticleBaseProps = {
 const useStyles = createStyles(() => ({
   article: {
     width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    align: 'flex-start',
+    justify: 'flex-start',
+    gap: '16px',
   },
 }));
 
@@ -40,20 +45,18 @@ export default function ArticleBase({
   );
 
   return (
-    <article>
-      <Stack className={classes.article} align="flex-start" justify="flex-start">
-        <ArticleTitle article={article} categoryPath={categoryPath} preview={preview} />
-        {imageObject &&
-          (preview ? (
-            <Link href={`${categoryPath}/${slug}`} passHref>
-              <Anchor component="a">{getArticleImage(imageObject)}</Anchor>
-            </Link>
-          ) : (
-            getArticleImage(imageObject)
-          ))}
-        <Text>{description}</Text>
-        {children}
-      </Stack>
+    <article className={classes.article}>
+      <ArticleTitle article={article} categoryPath={categoryPath} preview={preview} />
+      {imageObject &&
+        (preview ? (
+          <Link href={`${categoryPath}/${slug}`} passHref>
+            <Anchor component="a">{getArticleImage(imageObject)}</Anchor>
+          </Link>
+        ) : (
+          getArticleImage(imageObject)
+        ))}
+      <Text>{description}</Text>
+      {children}
     </article>
   );
 }

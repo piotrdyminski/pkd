@@ -34,7 +34,7 @@ export default function ArticlesPage(props: InferGetServerSidePropsType<typeof g
     )) ?? [];
 
   return (
-    <Page title="Z życia parafii" breadcrumbs={breadcrumbs}>
+    <Page title="Z życia parafii" breadcrumbs={breadcrumbs} align="center">
       {articlePreviews.length > 0 ? articlePreviews : <Text>Brak artykułów.</Text>}
       <Pagination page={page} total={pageCount} onChange={pageChanged} withEdges mt="xl" />
     </Page>
