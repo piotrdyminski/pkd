@@ -1,48 +1,71 @@
-import { Burger, createStyles, Group, Header, MediaQuery, Stack, Title } from '@mantine/core';
-import Image from 'next/image';
+import { Anchor, Burger, createStyles, Header, Stack, Title } from '@mantine/core';
+import { useScrollLock } from '@mantine/hooks';
+import Link from 'next/link';
 import { Dispatch, SetStateAction } from 'react';
-import headerIcon from '../public/header-icon.png';
-import HeaderBackgroundImage from './header-background-image';
+import Logo from './logo';
 
 type AppHeaderProps = {
   opened: boolean;
   setOpened: Dispatch<SetStateAction<boolean>>;
 };
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   header: {
-    position: 'relative',
-    border: 0,
+    display: 'flex',
+    alignItems: 'center',
+    gap: '20px',
+    boxShadow: '0px -5px 15px 0px rgba(34, 139, 230, 0.7)',
+    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+      display: 'none',
+    },
   },
-  headerIcon: {
-    zIndex: 1,
+  logo: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    color: 'initial',
+    '&:hover': {
+      textDecoration: 'none',
+    },
   },
-  headerTitle: {
-    zIndex: 1,
+  mainTitle: {
+    [`@media (max-width: ${theme.breakpoints.xs}px)`]: {
+      fontSize: theme.fontSizes.sm,
+    },
   },
-  burger: {
-    zIndex: 1,
+  subTitle: {
+    color: theme.colors.gray[7],
+    [`@media (max-width: ${theme.breakpoints.xs}px)`]: {
+      fontSize: theme.fontSizes.xs,
+    },
   },
 }));
 
 export default function AppHeader({ opened, setOpened }: AppHeaderProps) {
   const { classes } = useStyles();
+  const [, setScrollLocked] = useScrollLock();
+
+  const burgerClicked = () => {
+    setOpened((o) => !o);
+    setScrollLocked((l) => !l);
+  };
 
   return (
-    <Header className={classes.header} height={70} p="sm">
-      <Group>
-        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-          <Burger className={classes.burger} opened={opened} onClick={() => setOpened((o) => !o)} size="sm" />
-        </MediaQuery>
-        <div style={{ height: 38, width: 38 }}>
-          <Image className={classes.headerIcon} src={headerIcon} alt="Header icon"></Image>
-        </div>
-        <Stack className={classes.headerTitle} spacing={0}>
-          <Title order={5}>Parafia Matki Bożej Fatimskiej</Title>
-          <Title order={6}>Kielce-Dyminy</Title>
-        </Stack>
-      </Group>
-      <HeaderBackgroundImage />
+    <Header className={classes.header} height={70} p="sm" fixed>
+      <Burger opened={opened} onClick={burgerClicked} size="sm" />
+      <Link href="/" passHref>
+        <Anchor component="a" className={classes.logo}>
+          <Logo />
+          <Stack spacing={0}>
+            <Title order={5} className={classes.mainTitle}>
+              Parafia Matki Bożej Fatimskiej
+            </Title>
+            <Title order={6} className={classes.subTitle}>
+              Kielce-Dyminy
+            </Title>
+          </Stack>
+        </Anchor>
+      </Link>
     </Header>
   );
 }

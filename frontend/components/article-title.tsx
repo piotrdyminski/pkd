@@ -10,14 +10,18 @@ type ArticleTitleProps = {
 };
 
 const useStyles = createStyles((theme) => ({
+  title: {
+    lineHeight: 1.7,
+  },
   link: {
+    fontFamily: 'inherit',
     color: 'inherit',
-
     '&:hover': {
       color: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
     },
   },
   subtitle: {
+    fontWeight: 500,
     rowGap: 0,
   },
 }));
@@ -36,7 +40,9 @@ export default function ArticleTitle({ article, categoryPath, preview }: Article
   );
   return (
     <Stack align="flex-start" justify="flex-start" spacing={0}>
-      <Title order={2}>{titleContent}</Title>
+      <Title order={2} className={classes.title}>
+        {titleContent}
+      </Title>
       <Group className={classes.subtitle}>
         <Text>
           Kategoria:{' '}

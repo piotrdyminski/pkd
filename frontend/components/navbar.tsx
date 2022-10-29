@@ -1,4 +1,4 @@
-import { Navbar } from '@mantine/core';
+import { createStyles, Navbar, Stack } from '@mantine/core';
 import {
   IconAddressBook,
   IconAlbum,
@@ -14,6 +14,7 @@ import {
 
 import { NavbarLinkButton, NavbarLinkButtonProps } from './nabvar-link-button';
 import { NavbarGroupButton, NavbarGroupButtonProps } from './navbar-group-button';
+import NavbarHeader from './navbar-header';
 import RecommendedLinks from './recommended-links';
 import ViewCounter from './view-counter';
 
@@ -40,7 +41,7 @@ const navbarItemList: NavbarItem[] = [
     ],
   },
   {
-    label: 'Dok. do Sakramentów',
+    label: 'Dok. do Sakram.',
     icon: IconFiles,
     links: [
       { label: 'Sakrament Chrztu', link: '/dokumenty-do-sakramentow/sakrament-chrztu' },
@@ -51,7 +52,21 @@ const navbarItemList: NavbarItem[] = [
   { label: 'Cmentarz', icon: IconBuildingMonument, link: '/cmentarz' },
 ];
 
+const useStyles = createStyles((theme) => ({
+  navbar: {
+    gap: '40px',
+    boxShadow: '-5px 0px 15px 0px rgba(0, 0, 0, 0.1)',
+    [`@media (max-width: ${theme.breakpoints.md - 1}px)`]: {
+      position: 'fixed',
+      width: '100%',
+      overflow: 'auto',
+    },
+  },
+}));
+
 export default function AppNavbar({ opened }: AppNavbarProps) {
+  const { classes } = useStyles();
+
   const isNavbarGroup = (navbarItem: NavbarItem): navbarItem is NavbarGroupButtonProps => {
     return Array.isArray((navbarItem as NavbarGroupButtonProps).links);
   };
@@ -65,10 +80,20 @@ export default function AppNavbar({ opened }: AppNavbarProps) {
   });
 
   return (
-    <Navbar width={{ sm: 200, lg: 300 }} height="auto" p="lg" hiddenBreakpoint="sm" hidden={!opened}>
-      {navbarLinks}
-      <RecommendedLinks />
-      <ViewCounter />
+    <Navbar
+      className={classes.navbar}
+      width={{ base: 300 }}
+      height="auto"
+      p="lg"
+      hiddenBreakpoint="md"
+      hidden={!opened}
+    >
+      <NavbarHeader />
+      <Stack spacing={0}>{navbarLinks}</Stack>
+      <Stack align="center" spacing="xl">
+        <RecommendedLinks />
+        <ViewCounter />
+      </Stack>
     </Navbar>
   );
 }
