@@ -5,7 +5,8 @@ export type RichTextProps = {
 };
 
 export default function RichText({ html }: RichTextProps) {
-  const sanitizeStrapiUploadPaths = (html: string) => html.replaceAll('/uploads', getStrapiURL('/uploads'));
+  const uploadsRootPath = '/uploads';
+  const sanitizeStrapiUploadPaths = (html: string) => html.replaceAll(uploadsRootPath, getStrapiURL(uploadsRootPath));
 
   return <div dangerouslySetInnerHTML={{ __html: sanitizeStrapiUploadPaths(html) }} />;
 }

@@ -1,6 +1,6 @@
 import { Global } from '@mantine/core';
 
-export function CustomFonts() {
+export function GlobalStyles() {
   return (
     <Global
       styles={[
@@ -14,6 +14,11 @@ export function CustomFonts() {
           '@font-face': {
             fontFamily: 'Cinzel',
             src: `url('/fonts/Cinzel-latin-ext.woff2') format('woff2')`,
+          },
+        },
+        {
+          'h1, h2, h3, h4, h5, h6': {
+            fontFamily: 'Cinzel',
           },
         },
       ]}
