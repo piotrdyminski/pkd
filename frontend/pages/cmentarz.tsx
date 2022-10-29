@@ -6,7 +6,7 @@ import Page from '../components/page';
 import RichText from '../components/rich-text';
 import { fetchAPIOrDefault } from '../lib/api';
 import { getStrapiMedia } from '../lib/media';
-import { AdvancedPageModel } from '../models/advanced-page';
+import { AdvancedSinglePageModel } from '../models/single-page';
 import { StrapiApiSingleResponse } from '../models/strapi';
 
 export default function CemeteryPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -15,8 +15,6 @@ export default function CemeteryPage(props: InferGetStaticPropsType<typeof getSt
   const { content = '', image, images } = props.advancedPageContent?.data?.attributes ?? {};
   const imagesList = images?.data?.map(({ attributes }) => attributes) ?? [];
   const { url = '', alternativeText = '', width, height } = image?.data?.attributes ?? {};
-
-  console.log(imagesList, url);
 
   return (
     <Page title={title} breadcrumbs={breadcrumbs}>
@@ -32,10 +30,10 @@ export default function CemeteryPage(props: InferGetStaticPropsType<typeof getSt
 }
 
 export const getStaticProps: GetStaticProps<{
-  advancedPageContent: StrapiApiSingleResponse<AdvancedPageModel> | null;
+  advancedPageContent: StrapiApiSingleResponse<AdvancedSinglePageModel> | null;
 }> = async () => ({
   props: {
-    advancedPageContent: await fetchAPIOrDefault<StrapiApiSingleResponse<AdvancedPageModel>>('/cemetery', {
+    advancedPageContent: await fetchAPIOrDefault<StrapiApiSingleResponse<AdvancedSinglePageModel>>('/cemetery', {
       populate: ['image', 'images'],
     }),
   },

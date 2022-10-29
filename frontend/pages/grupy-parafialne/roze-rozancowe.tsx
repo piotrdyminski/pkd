@@ -2,7 +2,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Page from '../../components/page';
 import RichText from '../../components/rich-text';
 import { fetchAPIOrDefault } from '../../lib/api';
-import { RichTextModel } from '../../models/rich-text';
+import { SinglePageModel } from '../../models/single-page';
 import { StrapiApiSingleResponse } from '../../models/strapi';
 
 export default function RosaryRosesPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -18,7 +18,9 @@ export default function RosaryRosesPage(props: InferGetStaticPropsType<typeof ge
 }
 
 export const getStaticProps: GetStaticProps<{
-  singlePageContent: StrapiApiSingleResponse<RichTextModel> | null;
+  singlePageContent: StrapiApiSingleResponse<SinglePageModel> | null;
 }> = async () => ({
-  props: { singlePageContent: await fetchAPIOrDefault<StrapiApiSingleResponse<RichTextModel>>('/rosary-rose', {}) },
+  props: {
+    singlePageContent: await fetchAPIOrDefault<StrapiApiSingleResponse<SinglePageModel>>('/rosary-rose', {}),
+  },
 });

@@ -6,7 +6,7 @@ import Page from '../components/page';
 import RichText from '../components/rich-text';
 import { fetchAPIOrDefault } from '../lib/api';
 import { getStrapiMedia } from '../lib/media';
-import { AdvancedPageModel } from '../models/advanced-page';
+import { AdvancedSinglePageModel } from '../models/single-page';
 import { StrapiApiSingleResponse } from '../models/strapi';
 
 export default function HistoryPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -30,10 +30,10 @@ export default function HistoryPage(props: InferGetStaticPropsType<typeof getSta
 }
 
 export const getStaticProps: GetStaticProps<{
-  advancedPageContent: StrapiApiSingleResponse<AdvancedPageModel> | null;
+  advancedPageContent: StrapiApiSingleResponse<AdvancedSinglePageModel> | null;
 }> = async () => ({
   props: {
-    advancedPageContent: await fetchAPIOrDefault<StrapiApiSingleResponse<AdvancedPageModel>>('/history', {
+    advancedPageContent: await fetchAPIOrDefault<StrapiApiSingleResponse<AdvancedSinglePageModel>>('/history', {
       populate: ['image', 'images'],
     }),
   },
