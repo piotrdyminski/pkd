@@ -1,30 +1,40 @@
-import { Text } from '@mantine/core';
+import { Stack } from '@mantine/core';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import Image from 'next/image';
+import Gallery from '../components/gallery';
 import Page from '../components/page';
+import RichText from '../components/rich-text';
+import { fetchAPIOrDefault } from '../lib/api';
+import { getStrapiMedia } from '../lib/media';
+import { AdvancedPageModel } from '../models/advanced-page';
+import { StrapiApiSingleResponse } from '../models/strapi';
 
-export default function HistoryPage() {
-  const breadcrumbs = [{ label: 'Strona główna', href: '/' }, { label: 'Historia Parafii' }];
+export default function HistoryPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const title = 'Historia Parafii';
+  const breadcrumbs = [{ label: 'Strona główna', href: '/' }, { label: title }];
+  const { content = '', image, images } = props.advancedPageContent?.data?.attributes ?? {};
+  const imagesList = images?.data?.map(({ attributes }) => attributes) ?? [];
+  const { url = '', alternativeText = '', width, height } = image?.data?.attributes ?? {};
 
   return (
-    <Page title="Historia Parafii" breadcrumbs={breadcrumbs}>
-      <Text>
-        Początki nowej wspólnoty parafialnej w Dyminach, wydzielonej z parafii Suków i Chrystusa Króla w Kielcach to
-        1986 r., gdy powstał samodzielny ośrodek duszpasterski. Parafię erygował bp Stanisław Szymecki 29 grudnia 1988
-        r. Budowa kościoła w stanie surowym to lata 1988-1993. Konsekracji świątyni dokonał w Roku Jubileuszowym 2000 bp
-        Kazimierz Ryczan. A gdyby głębiej sięgnąć do historii, trzeba by wspomnieć miejscowy obiekt kult - urokliwą,
-        drewnianą kaplicę pw. Matki Bożej Częstochowskiej.
-      </Text>
-      <Text>
-        Zachował się dokument erekcyjny tej publicznej kaplicy, wydany w 1810 r. Jest ona darzona sentymentem wiernych
-        także z racji dramatycznych wydarzeń z czasów II wojny światowej, gdy Niemcy rozstrzelali tutaj grupkę osób,
-        ocaleli zaś ci, którzy nie przerwali modlitwy... Serce starej kaplicy - czyli ołtarz Matki Bożej Częstochowskiej
-        został odnowiony i umieszczony w bocznej nawie nowego kościoła. Kościół w Dyminach wraz z obiektami
-        towarzyszącymi zaprojektowała Regina Kozakiewicz-Opałka. Jest ona także współprojektantką wnętrza, wraz z
-        wykonawcą elementów wystroju art. rzeźbiarzem Stefanem Majem. W ołtarzu głównym znajduje się duża płaskorzeźba w
-        stiuku, przedstawiająca Matkę Bożą Fatimską, w bocznych - Pan Jezus Miłosierny oraz ołtarz Matki Bożej
-        Częstochowskiej. Ze stiuku wykonano także stacje Drogi Krzyżowej i tabernakulum. Posadzka z marmuru „biała
-        mariann”, wreszcie ołtarz, ambonka, chrzcielnica zrobione z zielonego marmuru, uzupełniają wystrój wnętrza. W
-        kościele znajdują się kolekcja pamiątek po Janie Pawle II.
-      </Text>
+    <Page title={title} breadcrumbs={breadcrumbs}>
+      {url && (
+        <Stack align="center">
+          <Image src={getStrapiMedia(url)} alt={alternativeText} width={width} height={height} quality={100}></Image>
+        </Stack>
+      )}
+      <RichText html={content}></RichText>
+      {imagesList.length > 0 && <Gallery images={imagesList}></Gallery>}
     </Page>
   );
 }
+
+export const getStaticProps: GetStaticProps<{
+  advancedPageContent: StrapiApiSingleResponse<AdvancedPageModel> | null;
+}> = async () => ({
+  props: {
+    advancedPageContent: await fetchAPIOrDefault<StrapiApiSingleResponse<AdvancedPageModel>>('/history', {
+      populate: ['image', 'images'],
+    }),
+  },
+});
