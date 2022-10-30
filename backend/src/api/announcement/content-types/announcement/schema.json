@@ -16,6 +16,11 @@
       "pluginOptions": {},
       "type": "richtext",
       "required": true
+    },
+    "page_slug": {
+      "type": "text",
+      "default": "/ogloszenia-duszpasterskie",
+      "required": true
     }
   }
 }

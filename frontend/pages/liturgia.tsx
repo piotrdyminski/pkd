@@ -5,8 +5,8 @@ import { fetchAPIOrDefault } from '../lib/api';
 import { SinglePageModel } from '../models/single-page';
 import { StrapiApiSingleResponse } from '../models/strapi';
 
-export default function IntentionPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
-  const title = 'Intencje Mszalne';
+export default function LiturgyPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const title = 'Liturgia';
   const breadcrumbs = [{ label: 'Strona główna', href: '/' }, { label: title }];
   const { content = '' } = props.singlePageContent?.data?.attributes ?? {};
 
@@ -20,5 +20,5 @@ export default function IntentionPage(props: InferGetStaticPropsType<typeof getS
 export const getStaticProps: GetStaticProps<{
   singlePageContent: StrapiApiSingleResponse<SinglePageModel> | null;
 }> = async () => ({
-  props: { singlePageContent: await fetchAPIOrDefault<StrapiApiSingleResponse<SinglePageModel>>('/intention', {}) },
+  props: { singlePageContent: await fetchAPIOrDefault<StrapiApiSingleResponse<SinglePageModel>>('/liturgy', {}) },
 });
