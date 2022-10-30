@@ -1,4 +1,4 @@
-import { Pagination } from '@mantine/core';
+import { Pagination, Text } from '@mantine/core';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
 import Gallery from '../components/gallery';
@@ -30,17 +30,27 @@ export default function GalleryPage(props: InferGetServerSidePropsType<typeof ge
 
   return (
     <Page title={title} breadcrumbs={breadcrumbs} align="center">
-      {imageListSize > 0 && <Gallery images={imagesList}></Gallery>}
-      <Pagination page={currentPage} total={totalPages} onChange={pageChanged} withEdges mt="xl" />
+      {!imageListSize ? (
+        <Text>Brak dostępnych materiałów.</Text>
+      ) : (
+        <>
+          <Gallery images={imagesList}></Gallery>
+          <Pagination page={currentPage} total={totalPages} onChange={pageChanged} withEdges mt="xl" />
+        </>
+      )}
     </Page>
   );
 }
 
 export const getServerSideProps: GetServerSideProps<{ images: StrapiApiImage[]; page: number }> = async ({ query }) => {
-  const page = (query.strona || '1') as string;
+  const defaultPageNumber = 1;
+  let pageNumber = parseInt(query.strona as string) || defaultPageNumber;
+  if (pageNumber <= 0) {
+    pageNumber = defaultPageNumber;
+  }
   // start api accepts values starting from '0'
   // pages values on the other hand will start from value '1'
-  const start = (parseInt(page) - 1) * imagesPerPage;
+  const start = (pageNumber - 1) * imagesPerPage;
 
   const images = await fetchAPI<StrapiApiImage[]>('/upload/files', {
     populate: ['image', 'images'],
@@ -52,7 +62,7 @@ export const getServerSideProps: GetServerSideProps<{ images: StrapiApiImage[]; 
   return {
     props: {
       images,
-      page: parseInt(page),
+      page: pageNumber,
     },
   };
 };
