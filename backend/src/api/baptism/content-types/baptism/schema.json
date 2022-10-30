@@ -17,8 +17,8 @@
       "required": true
     },
     "page_slug": {
-      "type": "uid",
-      "default": "baptism",
+      "type": "text",
+      "default": "/kancelaria/sakrament-chrztu",
       "required": true
     }
   }

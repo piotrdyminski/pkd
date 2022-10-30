@@ -17,8 +17,8 @@
       "required": true
     },
     "page_slug": {
-      "type": "uid",
-      "default": "firefighter",
+      "type": "text",
+      "default": "/grupy-parafialne/strazacy",
       "required": true
     }
   }

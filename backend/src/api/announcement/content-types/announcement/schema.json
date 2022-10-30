@@ -18,8 +18,8 @@
       "required": true
     },
     "page_slug": {
-      "type": "uid",
-      "default": "announcement",
+      "type": "text",
+      "default": "/ogloszenia-duszpasterskie",
       "required": true
     }
   }

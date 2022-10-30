@@ -17,8 +17,8 @@
       "required": true
     },
     "page_slug": {
-      "type": "uid",
-      "default": "confirmation",
+      "type": "text",
+      "default": "/kancelaria/sakrament-bierzmowania",
       "required": true
     }
   }

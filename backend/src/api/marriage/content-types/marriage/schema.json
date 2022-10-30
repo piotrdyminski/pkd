@@ -17,8 +17,8 @@
       "required": true
     },
     "page_slug": {
-      "type": "uid",
-      "default": "marriage",
+      "type": "text",
+      "default": "/kancelaria/sakrament-malzenstwa",
       "required": true
     }
   }

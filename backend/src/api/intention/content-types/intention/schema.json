@@ -17,8 +17,8 @@
       "required": true
     },
     "page_slug": {
-      "type": "uid",
-      "default": "intention",
+      "type": "text",
+      "default": "/intencje-mszalne",
       "required": true
     }
   }

@@ -17,8 +17,8 @@
       "required": true
     },
     "page_slug": {
-      "type": "uid",
-      "default": "rosary-rose",
+      "type": "text",
+      "default": "/grupy-parafialne/roze-rozancowe",
       "required": true
     }
   }

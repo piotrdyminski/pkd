@@ -17,8 +17,8 @@
       "required": true
     },
     "page_slug": {
-      "type": "uid",
-      "default": "choir",
+      "type": "text",
+      "default": "/grupy-parafialne/chor",
       "required": true
     }
   }

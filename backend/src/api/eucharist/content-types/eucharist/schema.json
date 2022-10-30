@@ -17,8 +17,8 @@
       "required": true
     },
     "page_slug": {
-      "type": "uid",
-      "default": "eucharist",
+      "type": "text",
+      "default": "/kancelaria/sakrament-euchahrystii",
       "required": true
     }
   }

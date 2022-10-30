@@ -17,8 +17,8 @@
       "required": true
     },
     "page_slug": {
-      "type": "uid",
-      "default": "info",
+      "type": "text",
+      "default": "/kancelaria/dane-parafii",
       "required": true
     }
   }

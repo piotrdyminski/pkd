@@ -17,8 +17,8 @@
       "required": true
     },
     "page_slug": {
-      "type": "uid",
-      "default": "priest",
+      "type": "text",
+      "default": "/duszpasterze",
       "required": true
     }
   }
