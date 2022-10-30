@@ -55,7 +55,7 @@ const navbarItemList: NavbarItem[] = [
 const useStyles = createStyles((theme) => ({
   navbar: {
     gap: '40px',
-    boxShadow: '-5px 0px 15px 0px rgba(0, 0, 0, 0.1)',
+    boxShadow: '10px 0px 15px -15px rgba(0, 0, 0, 0.1)',
     [`@media (max-width: ${theme.breakpoints.md - 1}px)`]: {
       position: 'fixed',
       width: '100%',

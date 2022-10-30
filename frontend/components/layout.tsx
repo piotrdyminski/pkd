@@ -11,6 +11,7 @@ const useStyles = createStyles((theme) => ({
     overflow: 'hidden',
   },
   body: {
+    paddingBottom: '30px',
     borderBottom: `1px solid ${theme.colors.gray[2]}`,
   },
   main: {
