@@ -15,6 +15,11 @@ type ArticleBaseProps = {
 const useStyles = createStyles(() => ({
   article: {
     width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    align: 'flex-start',
+    justify: 'flex-start',
+    gap: '16px',
   },
 }));
 
@@ -30,30 +35,30 @@ export default function ArticleBase({
   const { alternativeText, width, height } = imageObject ?? {};
 
   const getArticleImage = (image: StrapiApiImage) => (
-    <Image
-      src={getStrapiMedia(getResponsiveImageUrl(image, ['large']))}
-      alt={alternativeText || ''}
-      width={width}
-      height={height}
-      quality={100}
-    />
+    <Stack align="center">
+      <Image
+        src={getStrapiMedia(getResponsiveImageUrl(image, ['large']))}
+        alt={alternativeText || ''}
+        width={width}
+        height={height}
+        quality={100}
+      />
+    </Stack>
   );
 
   return (
-    <article>
-      <Stack className={classes.article} align="flex-start" justify="flex-start">
-        <ArticleTitle article={article} categoryPath={categoryPath} preview={preview} />
-        {imageObject &&
-          (preview ? (
-            <Link href={`${categoryPath}/${slug}`} passHref>
-              <Anchor component="a">{getArticleImage(imageObject)}</Anchor>
-            </Link>
-          ) : (
-            getArticleImage(imageObject)
-          ))}
-        <Text>{description}</Text>
-        {children}
-      </Stack>
+    <article className={classes.article}>
+      <ArticleTitle article={article} categoryPath={categoryPath} preview={preview} />
+      {imageObject &&
+        (preview ? (
+          <Link href={`${categoryPath}/${slug}`} passHref>
+            <Anchor component="a">{getArticleImage(imageObject)}</Anchor>
+          </Link>
+        ) : (
+          getArticleImage(imageObject)
+        ))}
+      <Text>{description}</Text>
+      {children}
     </article>
   );
 }

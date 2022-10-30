@@ -20,17 +20,18 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "images": {
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
+    },
+    "page_slug": {
+      "type": "text",
+      "default": "/cmentarz",
+      "required": true
     }
   }
 }

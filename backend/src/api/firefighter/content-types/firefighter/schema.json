@@ -15,6 +15,11 @@
     "content": {
       "type": "richtext",
       "required": true
+    },
+    "page_slug": {
+      "type": "text",
+      "default": "/grupy-parafialne/strazacy",
+      "required": true
     }
   }
 }

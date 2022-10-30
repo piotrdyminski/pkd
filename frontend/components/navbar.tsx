@@ -1,15 +1,16 @@
 import { createStyles, Navbar, Stack } from '@mantine/core';
 import {
-  IconAddressBook,
   IconAlbum,
+  IconBook,
   IconBuildingChurch,
   IconBuildingMonument,
+  IconBuildingSkyscraper,
   IconCalendarEvent,
-  IconFiles,
   IconFriends,
   IconHome,
   IconNews,
   IconPray,
+  IconUsers,
 } from '@tabler/icons';
 
 import { NavbarLinkButton, NavbarLinkButtonProps } from './nabvar-link-button';
@@ -27,26 +28,33 @@ type AppNavbarProps = {
 const navbarItemList: NavbarItem[] = [
   { label: 'Strona główna', icon: IconHome, link: '/' },
   { label: 'Historia', icon: IconBuildingChurch, link: '/historia' },
-  { label: 'Ogłoszenia', icon: IconNews, link: '/ogloszenia' },
+  { label: 'Ogłoszenia', icon: IconNews, link: '/ogloszenia-duszpasterskie' },
   { label: 'Intencje mszalne', icon: IconPray, link: '/intencje-mszalne' },
+  { label: 'Liturgia', icon: IconBook, link: '/liturgia' },
   { label: 'Z życia parafii', icon: IconCalendarEvent, link: '/z-zycia-parafii' },
+  { label: 'Duszpasterze', icon: IconUsers, link: '/duszpasterze' },
   { label: 'Galeria', icon: IconAlbum, link: '/galeria' },
-  { label: 'Dane parafii', icon: IconAddressBook, link: '/dane-parafii' },
+  {
+    label: 'Kancelaria',
+    icon: IconBuildingSkyscraper,
+    links: [
+      { label: 'Dane parafii', link: '/kancelaria/dane-parafii' },
+      { label: 'Sakrament Chrztu', link: '/kancelaria/sakrament-chrztu' },
+      { label: 'Sakrament Euchahrystii', link: '/kancelaria/sakrament-euchahrystii' },
+      { label: 'Sakrament Bierzmowania', link: '/kancelaria/sakrament-bierzmowania' },
+      { label: 'Sakrament Małżeństwa', link: '/kancelaria/sakrament-malzenstwa' },
+    ],
+  },
   {
     label: 'Grupy parafialne',
     icon: IconFriends,
     links: [
-      { label: 'Kółko różańcowe', link: '/grupy-parafialne/kolko-rozancowe' },
       { label: 'Chór', link: '/grupy-parafialne/chor' },
-    ],
-  },
-  {
-    label: 'Dok. do Sakram.',
-    icon: IconFiles,
-    links: [
-      { label: 'Sakrament Chrztu', link: '/dokumenty-do-sakramentow/sakrament-chrztu' },
-      { label: 'Sakrament Bierzmowania', link: '/dokumenty-do-sakramentow/sakrament-bierzmowania' },
-      { label: 'Sakrament Małżeństwa', link: '/dokumenty-do-sakramentow/sakrament-malzenstwa' },
+      { label: 'Ministranci', link: '/grupy-parafialne/ministranci' },
+      { label: 'Róże różańcowe', link: '/grupy-parafialne/roze-rozancowe' },
+      { label: 'Schola młodzieżowa', link: '/grupy-parafialne/schola-mlodziezowa' },
+      { label: 'Schola dziecięca', link: '/grupy-parafialne/schola-dziecieca' },
+      { label: 'Strażacy', link: '/grupy-parafialne/strazacy' },
     ],
   },
   { label: 'Cmentarz', icon: IconBuildingMonument, link: '/cmentarz' },

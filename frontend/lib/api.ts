@@ -28,3 +28,15 @@ export const fetchAPI = async <T>(
   }
   return await response.json();
 };
+
+export const fetchAPIOrDefault = async <T>(
+  path: string,
+  urlParamsObject?: object,
+  options?: object
+): Promise<T | null> => {
+  try {
+    return await fetchAPI<T>(path, urlParamsObject, options);
+  } catch (error) {
+    return null;
+  }
+};

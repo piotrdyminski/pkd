@@ -1,9 +1,11 @@
 import { Anchor, Breadcrumbs, createStyles, Divider, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
+import React from 'react';
 
 type PageProps = {
   title?: string;
   breadcrumbs?: { label: string; href?: string }[];
+  align?: string;
 };
 
 const useStyles = createStyles((theme) => ({
@@ -12,6 +14,7 @@ const useStyles = createStyles((theme) => ({
     [`@media (max-width: ${theme.breakpoints.md}px)`]: {
       padding: '30px',
     },
+    width: '100%',
   },
   breadcrumbs: {
     alignSelf: 'flex-start',
@@ -24,7 +27,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function Page({ title, breadcrumbs, children }: React.PropsWithChildren<PageProps>) {
+export default function Page({ title, breadcrumbs, align, children }: React.PropsWithChildren<PageProps>) {
   const { classes } = useStyles();
 
   const breadcrumbItems =
@@ -41,15 +44,15 @@ export default function Page({ title, breadcrumbs, children }: React.PropsWithCh
     ) ?? [];
 
   return (
-    <Stack className={classes.page} align="center" justify="flex-start" spacing="xl">
+    <Stack className={classes.page} align={align ?? 'initial'} justify="flex-start" spacing="xl">
       {breadcrumbItems.length > 0 && <Breadcrumbs className={classes.breadcrumbs}>{breadcrumbItems}</Breadcrumbs>}
       {title && (
-        <>
+        <Stack align="center">
           <Title order={1} align="center">
             {title}
           </Title>
           <Divider className={classes.mainDivider} my="xs" size="sm" />
-        </>
+        </Stack>
       )}
       {children}
     </Stack>

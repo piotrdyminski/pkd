@@ -20,7 +20,11 @@ export default function ArticlePage(props: InferGetStaticPropsType<typeof getSta
     <Text>Strona, której szukasz nie istnieje.</Text>
   );
 
-  return <Page breadcrumbs={breadcrumbs}>{articleContent}</Page>;
+  return (
+    <Page breadcrumbs={breadcrumbs} align="center">
+      {articleContent}
+    </Page>
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
