@@ -1,5 +1,5 @@
 import { createStyles, Divider, Group, Stack, Text, Title } from '@mantine/core';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ArticleCard } from '../components/article-card';
 import { Cover } from '../components/cover';
 import { fetchAPI } from '../lib/api';
@@ -56,7 +56,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function IndexPage(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function IndexPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { classes } = useStyles();
   const { data: articles } = props.articles;
 
@@ -101,7 +101,7 @@ export default function IndexPage(props: InferGetServerSidePropsType<typeof getS
   );
 }
 
-export const getServerSideProps: GetServerSideProps<{ articles: StrapiApiResponse<ArticleModel> }> = async () => {
+export const getStaticProps: GetStaticProps<{ articles: StrapiApiResponse<ArticleModel> }> = async () => {
   const articles = await fetchAPI<StrapiApiResponse<ArticleModel>>('/articles', {
     populate: ['image'],
     sort: ['publishedAt:desc'],
