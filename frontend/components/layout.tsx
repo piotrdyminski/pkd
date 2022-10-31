@@ -34,6 +34,11 @@ export default function Layout({ children }: React.PropsWithChildren<unknown>) {
     setScrollLocked((l) => !l);
   };
 
+  const closeNavbar = () => {
+    setNavbarOpened(false);
+    setScrollLocked(false);
+  };
+
   return (
     <AppShell
       classNames={{
@@ -42,7 +47,7 @@ export default function Layout({ children }: React.PropsWithChildren<unknown>) {
         main: classes.main,
       }}
       header={<AppHeader {...{ opened, toggleNavbar }} />}
-      navbar={<AppNavbar {...{ opened, toggleNavbar }} />}
+      navbar={<AppNavbar {...{ opened, closeNavbar }} />}
       footer={<AppFooter />}
       fixed={false}
     >

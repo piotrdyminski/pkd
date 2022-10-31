@@ -35,7 +35,7 @@ type NavbarItem = NavbarLink | NavbarGroup;
 
 type AppNavbarProps = {
   opened: boolean;
-  toggleNavbar: () => void;
+  closeNavbar: () => void;
 };
 
 const navbarItemList: NavbarItem[] = [
@@ -85,7 +85,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function AppNavbar({ opened, toggleNavbar }: AppNavbarProps) {
+export default function AppNavbar({ opened, closeNavbar }: AppNavbarProps) {
   const { classes } = useStyles();
 
   const isNavbarGroup = (navbarItem: NavbarItem): navbarItem is NavbarGroup => {
@@ -94,9 +94,9 @@ export default function AppNavbar({ opened, toggleNavbar }: AppNavbarProps) {
 
   const navbarLinks = navbarItemList.map((menuItem, index) => {
     return isNavbarGroup(menuItem) ? (
-      <NavbarGroupButton key={index} navbarGroup={menuItem} onClick={toggleNavbar} />
+      <NavbarGroupButton key={index} navbarGroup={menuItem} onClick={closeNavbar} />
     ) : (
-      <NavbarLinkButton key={index} navbarLink={menuItem} onClick={toggleNavbar} />
+      <NavbarLinkButton key={index} navbarLink={menuItem} onClick={closeNavbar} />
     );
   });
 
