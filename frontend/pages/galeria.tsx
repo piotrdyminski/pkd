@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Gallery from '../components/gallery';
 import Page from '../components/page';
 import { fetchAPI } from '../lib/api';
+import { parsePageNumber } from '../lib/utils';
 import { StrapiApiImage } from '../models/strapi';
 
 const imagesPerPage = 24;
@@ -30,24 +31,20 @@ export default function GalleryPage(props: InferGetServerSidePropsType<typeof ge
 
   return (
     <Page title={title} breadcrumbs={breadcrumbs} align="center">
-      {!imageListSize ? (
-        <Text>Brak dostępnych materiałów.</Text>
-      ) : (
+      {imageListSize > 0 ? (
         <>
           <Gallery images={imagesList}></Gallery>
           <Pagination page={currentPage} total={totalPages} onChange={pageChanged} withEdges mt="xl" />
         </>
+      ) : (
+        <Text>Brak dostępnych materiałów.</Text>
       )}
     </Page>
   );
 }
 
 export const getServerSideProps: GetServerSideProps<{ images: StrapiApiImage[]; page: number }> = async ({ query }) => {
-  const defaultPageNumber = 1;
-  let pageNumber = parseInt(query.strona as string) || defaultPageNumber;
-  if (pageNumber <= 0) {
-    pageNumber = defaultPageNumber;
-  }
+  const pageNumber = parsePageNumber(query.strona);
   // start api accepts values starting from '0'
   // pages values on the other hand will start from value '1'
   const start = (pageNumber - 1) * imagesPerPage;
