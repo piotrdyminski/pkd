@@ -1,12 +1,10 @@
 import { Anchor, Burger, createStyles, Header, Stack, Title } from '@mantine/core';
-import { useScrollLock } from '@mantine/hooks';
 import Link from 'next/link';
-import { Dispatch, SetStateAction } from 'react';
 import Logo from './logo';
 
 type AppHeaderProps = {
   opened: boolean;
-  setOpened: Dispatch<SetStateAction<boolean>>;
+  toggleNavbar: () => void;
 };
 
 const useStyles = createStyles((theme) => ({
@@ -41,18 +39,11 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function AppHeader({ opened, setOpened }: AppHeaderProps) {
+export default function AppHeader({ opened, toggleNavbar }: AppHeaderProps) {
   const { classes } = useStyles();
-  const [, setScrollLocked] = useScrollLock();
-
-  const burgerClicked = () => {
-    setOpened((o) => !o);
-    setScrollLocked((l) => !l);
-  };
-
   return (
     <Header className={classes.header} height={70} p="sm" fixed>
-      <Burger opened={opened} onClick={burgerClicked} size="sm" />
+      <Burger opened={opened} onClick={toggleNavbar} size="sm" />
       <Link href="/" passHref>
         <Anchor component="a" className={classes.logo}>
           <Logo />

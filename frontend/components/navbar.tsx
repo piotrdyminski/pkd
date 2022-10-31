@@ -11,18 +11,31 @@ import {
   IconNews,
   IconPray,
   IconUsers,
+  TablerIcon,
 } from '@tabler/icons';
-
-import { NavbarLinkButton, NavbarLinkButtonProps } from './nabvar-link-button';
-import { NavbarGroupButton, NavbarGroupButtonProps } from './navbar-group-button';
+import { NavbarLinkButton } from './nabvar-link-button';
+import { NavbarGroupButton } from './navbar-group-button';
 import NavbarHeader from './navbar-header';
 import RecommendedLinks from './recommended-links';
 import ViewCounter from './view-counter';
 
-type NavbarItem = NavbarLinkButtonProps | NavbarGroupButtonProps;
+export type NavbarLink = {
+  icon: TablerIcon;
+  label: string;
+  link: string;
+};
+
+export type NavbarGroup = {
+  icon: TablerIcon;
+  label: string;
+  links: { label: string; link: string }[];
+};
+
+type NavbarItem = NavbarLink | NavbarGroup;
 
 type AppNavbarProps = {
   opened: boolean;
+  toggleNavbar: () => void;
 };
 
 const navbarItemList: NavbarItem[] = [
@@ -72,18 +85,18 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function AppNavbar({ opened }: AppNavbarProps) {
+export default function AppNavbar({ opened, toggleNavbar }: AppNavbarProps) {
   const { classes } = useStyles();
 
-  const isNavbarGroup = (navbarItem: NavbarItem): navbarItem is NavbarGroupButtonProps => {
-    return Array.isArray((navbarItem as NavbarGroupButtonProps).links);
+  const isNavbarGroup = (navbarItem: NavbarItem): navbarItem is NavbarGroup => {
+    return Array.isArray((navbarItem as NavbarGroup).links);
   };
 
   const navbarLinks = navbarItemList.map((menuItem, index) => {
     return isNavbarGroup(menuItem) ? (
-      <NavbarGroupButton key={index} {...menuItem} />
+      <NavbarGroupButton key={index} navbarGroup={menuItem} onClick={toggleNavbar} />
     ) : (
-      <NavbarLinkButton key={index} {...menuItem} />
+      <NavbarLinkButton key={index} navbarLink={menuItem} onClick={toggleNavbar} />
     );
   });
 
