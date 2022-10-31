@@ -16,6 +16,9 @@ const useStyles = createStyles((theme) => ({
     },
     width: '100%',
   },
+  pageTitle: {
+    width: '100%',
+  },
   breadcrumbs: {
     alignSelf: 'flex-start',
     flexWrap: 'wrap',
@@ -47,7 +50,7 @@ export default function Page({ title, breadcrumbs, align, children }: React.Prop
     <Stack className={classes.page} align={align ?? 'initial'} justify="flex-start" spacing="xl">
       {breadcrumbItems.length > 0 && <Breadcrumbs className={classes.breadcrumbs}>{breadcrumbItems}</Breadcrumbs>}
       {title && (
-        <Stack align="center">
+        <Stack className={classes.pageTitle} align="center">
           <Title order={1} align="center">
             {title}
           </Title>
