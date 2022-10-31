@@ -30,6 +30,7 @@ export type StrapiApiPagination = {
 };
 
 export type StrapiApiImage = {
+  id: number;
   name: string;
   alternativeText: string;
   caption: string;
@@ -54,4 +55,16 @@ export type StrapiApiImageFormat = {
   height: number;
   size: number;
   url: string;
+};
+
+export type StrapiWebhookEntryEvent = StrapiWebhookArticleEvent | StrapiWebhookSingleTypeEvent;
+
+export type StrapiWebhookArticleEvent = {
+  model: 'article';
+  entry: { slug: string };
+};
+
+export type StrapiWebhookSingleTypeEvent = {
+  model: 'other';
+  entry: { page_slug: string };
 };

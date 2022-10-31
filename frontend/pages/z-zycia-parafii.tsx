@@ -5,6 +5,7 @@ import React from 'react';
 import ArticlePreview from '../components/article-preview';
 import Page from '../components/page';
 import { fetchAPI } from '../lib/api';
+import { parsePageNumber } from '../lib/utils';
 import { ArticleModel } from '../models/article';
 import { StrapiApiResponse } from '../models/strapi';
 
@@ -35,8 +36,14 @@ export default function ArticlesPage(props: InferGetServerSidePropsType<typeof g
 
   return (
     <Page title="Z życia parafii" breadcrumbs={breadcrumbs} align="center">
-      {articlePreviews.length > 0 ? articlePreviews : <Text>Brak artykułów.</Text>}
-      <Pagination page={page} total={pageCount} onChange={pageChanged} withEdges mt="xl" />
+      {articlePreviews.length > 0 ? (
+        <>
+          {articlePreviews}
+          <Pagination page={page} total={pageCount} onChange={pageChanged} withEdges mt="xl" />
+        </>
+      ) : (
+        <Text>Brak dostępnych artykułów.</Text>
+      )}
     </Page>
   );
 }
@@ -44,7 +51,7 @@ export default function ArticlesPage(props: InferGetServerSidePropsType<typeof g
 export const getServerSideProps: GetServerSideProps<{ articles: StrapiApiResponse<ArticleModel> }> = async ({
   query,
 }) => {
-  const page = query.strona || 1;
+  const page = parsePageNumber(query.strona);
   const articles = await fetchAPI<StrapiApiResponse<ArticleModel>>('/articles', {
     populate: ['image'],
     sort: ['publishedAt:desc'],

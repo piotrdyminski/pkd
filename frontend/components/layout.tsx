@@ -1,4 +1,5 @@
 import { AppShell, createStyles } from '@mantine/core';
+import { useScrollLock } from '@mantine/hooks';
 import { useState } from 'react';
 import AppFooter from './footer';
 import AppHeader from './header';
@@ -11,9 +12,11 @@ const useStyles = createStyles((theme) => ({
     overflow: 'hidden',
   },
   body: {
+    paddingBottom: '30px',
     borderBottom: `1px solid ${theme.colors.gray[2]}`,
   },
   main: {
+    minHeight: '600px',
     padding: 0,
     [`@media (max-width: ${theme.breakpoints.md - 1}px)`]: {
       marginTop: '70px',
@@ -23,7 +26,18 @@ const useStyles = createStyles((theme) => ({
 
 export default function Layout({ children }: React.PropsWithChildren<unknown>) {
   const { classes } = useStyles();
-  const [opened, setOpened] = useState(false);
+  const [opened, setNavbarOpened] = useState(false);
+  const [, setScrollLocked] = useScrollLock();
+
+  const toggleNavbar = () => {
+    setNavbarOpened((o) => !o);
+    setScrollLocked((l) => !l);
+  };
+
+  const closeNavbar = () => {
+    setNavbarOpened(false);
+    setScrollLocked(false);
+  };
 
   return (
     <AppShell
@@ -32,8 +46,8 @@ export default function Layout({ children }: React.PropsWithChildren<unknown>) {
         body: classes.body,
         main: classes.main,
       }}
-      header={<AppHeader {...{ opened, setOpened }} />}
-      navbar={<AppNavbar {...{ opened }} />}
+      header={<AppHeader {...{ opened, toggleNavbar }} />}
+      navbar={<AppNavbar {...{ opened, closeNavbar }} />}
       footer={<AppFooter />}
       fixed={false}
     >

@@ -10,7 +10,7 @@ type ArticleCardProps = {
 
 const useStyles = createStyles(() => ({
   card: {
-    maxWidth: '400px',
+    flexBasis: '400px',
   },
   image: {
     position: 'relative',

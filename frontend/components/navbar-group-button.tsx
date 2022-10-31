@@ -1,8 +1,10 @@
 import { Anchor, Collapse, createStyles } from '@mantine/core';
-import { IconChevronRight, TablerIcon } from '@tabler/icons';
+import { IconChevronRight } from '@tabler/icons';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { isRouteActive } from '../lib/utils';
+import { NavbarGroup } from './navbar';
 import { NavbarButton } from './navbar-button';
 
 const useStyles = createStyles((theme) => ({
@@ -29,19 +31,20 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export type NavbarGroupButtonProps = {
-  icon: TablerIcon;
-  label: string;
-  links: { label: string; link: string }[];
+  navbarGroup: NavbarGroup;
+  onClick: () => void;
 };
 
-export function NavbarGroupButton({ icon, label, links }: NavbarGroupButtonProps) {
+export function NavbarGroupButton({ navbarGroup, onClick }: NavbarGroupButtonProps) {
   const router = useRouter();
-  const [opened, setOpened] = useState(false);
   const { classes } = useStyles();
+  const { icon, label, links } = navbarGroup;
+  const hasActiveLink = links.some(({ link }) => isRouteActive(router, link));
+  const [opened, setOpened] = useState(hasActiveLink);
 
   const items = links.map((link, index) => (
     <Link href={link.link} key={index} passHref>
-      <Anchor className={`${classes.link} ${router.pathname.startsWith(link.link) ? 'active' : ''}`}>
+      <Anchor className={`${classes.link} ${isRouteActive(router, link.link) ? 'active' : ''}`} onClick={onClick}>
         {link.label}
       </Anchor>
     </Link>
