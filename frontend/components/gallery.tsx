@@ -45,7 +45,7 @@ export default function Gallery({ images }: GalleryProps) {
   };
 
   const gridImages = images.map((image, index) => (
-    <Grid.Col key={index} span={3}>
+    <Grid.Col key={index} span={6} sm={4} lg={3}>
       <AspectRatio ratio={1 / 1} className={classes.imageWrapper} onClick={() => imageClicked(index)}>
         <Image
           src={getStrapiMedia(getResponsiveImageUrl(image, ['small', 'thumbnail']))}
