@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { isRouteActive } from '../lib/utils';
 import { NavbarLink } from './navbar';
 import { NavbarButton } from './navbar-button';
 
@@ -16,7 +17,7 @@ export function NavbarLinkButton({ navbarLink, onClick }: NavbarLinkButtonProps)
       <NavbarButton
         icon={icon}
         label={label}
-        active={link === '/' ? router.pathname === link : router.pathname.startsWith(link)}
+        active={link === '/' ? router.pathname === link : isRouteActive(router, link)}
         onClick={onClick}
       />
     </Link>
