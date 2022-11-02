@@ -8,6 +8,7 @@ const useStyles = createStyles(() => ({
     padding: '50px 40px 20px 40px',
     display: 'flex',
     flexDirection: 'column',
+    boxShadow: 'inset 0px 10px 15px -15px rgba(0, 0, 0, 0.1)',
   },
 
   contactContainer: {
