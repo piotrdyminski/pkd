@@ -85,7 +85,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
 
 export function Cover() {
   const { classes } = useStyles();
-  const autoplay = useRef(Autoplay({ delay: 5000 }));
+  const autoplay = useRef(Autoplay({ delay: 5000, stopOnInteraction: false }));
 
   const carouselImages = coverImages.map((coverImage, index) => (
     <Carousel.Slide key={index}>
@@ -131,8 +131,7 @@ export function Cover() {
           container: classes.height100,
         }}
         plugins={[autoplay.current]}
-        onMouseEnter={autoplay.current.stop}
-        onMouseLeave={autoplay.current.reset}
+        onMouseDown={autoplay.current.reset}
         loop
       >
         {carouselImages}
