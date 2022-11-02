@@ -1,9 +1,12 @@
+import { Carousel } from '@mantine/carousel';
 import { Box, Button, createStyles, Group, Stack, Title } from '@mantine/core';
+import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import Link from 'next/link';
-import coverImage from '../public/cover-image.png';
+import { useRef } from 'react';
+import coverImages from '../const/cover-images';
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles((theme, _params, getRef) => ({
   cover: {
     position: 'relative',
     minHeight: 552,
@@ -17,6 +20,7 @@ const useStyles = createStyles((theme) => ({
     color: 'white',
     textShadow: '0px 0px 10px rgba(0,0,0)',
     fontSize: '50px',
+    pointerEvents: 'none',
   },
   mainTitle: {
     fontSize: '45px',
@@ -42,6 +46,7 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
     gap: '50px',
+    pointerEvents: 'initial',
   },
   newsButton: {
     transition: '0.3s',
@@ -58,10 +63,44 @@ const useStyles = createStyles((theme) => ({
       textShadow: 'none',
     },
   },
+  imageCarousel: {
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
+    '&:hover': {
+      [`& .${getRef('controls')}`]: {
+        opacity: 1,
+      },
+    },
+  },
+  carouselControls: {
+    ref: getRef('controls'),
+    transition: 'opacity 150ms ease',
+    opacity: 0,
+  },
+  height100: {
+    height: '100%',
+  },
 }));
 
 export function Cover() {
   const { classes } = useStyles();
+  const autoplay = useRef(Autoplay({ delay: 5000 }));
+
+  const carouselImages = coverImages.map((coverImage, index) => (
+    <Carousel.Slide key={index}>
+      <Image
+        src={coverImage}
+        alt="Zdjęcie na pokazie slajdów"
+        layout="fill"
+        objectFit="cover"
+        objectPosition="center"
+        quality={100}
+        priority
+      />
+    </Carousel.Slide>
+  ));
+
   return (
     <Box className={classes.cover}>
       <Stack className={classes.coverElements} justify="flex-start" align="center">
@@ -84,15 +123,20 @@ export function Cover() {
           </Link>
         </Group>
       </Stack>
-      <Image
-        src={coverImage}
-        alt="Zdjęcie kościoła"
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
-        quality={100}
-        priority
-      />
+      <Carousel
+        classNames={{
+          root: classes.imageCarousel,
+          controls: classes.carouselControls,
+          viewport: classes.height100,
+          container: classes.height100,
+        }}
+        plugins={[autoplay.current]}
+        onMouseEnter={autoplay.current.stop}
+        onMouseLeave={autoplay.current.reset}
+        loop
+      >
+        {carouselImages}
+      </Carousel>
     </Box>
   );
 }

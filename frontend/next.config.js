@@ -5,7 +5,10 @@ const nextConfig = {
   output: 'standalone',
   images: {
     loader: 'default',
-    domains: ['localhost'],
+    domains: [
+      'localhost',
+      '139.59.133.110', // DigitalOcean
+    ],
   },
 };
 
