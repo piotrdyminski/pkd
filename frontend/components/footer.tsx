@@ -22,7 +22,7 @@ export default function AppFooter() {
   const [scroll, scrollTo] = useWindowScroll();
 
   const address = 'Sukowska 18, 25-146 Kielce';
-  const phoneNumber = '665 628 759';
+  const phoneNumber = '+48 665 628 759';
   const email = 'kancelaria@parafiakielcedyminy.pl';
 
   return (
