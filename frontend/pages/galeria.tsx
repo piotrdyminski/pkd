@@ -52,6 +52,13 @@ export const getServerSideProps: GetServerSideProps<{ images: StrapiApiImage[]; 
   const images = await fetchAPI<StrapiApiImage[]>('/upload/files', {
     populate: ['image', 'images'],
     sort: ['createdAt:desc'],
+    filters: {
+      folder: {
+        name: {
+          $eq: 'Galeria', // fetches images only from 'Galeria' folder
+        },
+      },
+    },
     start: start,
     limit: fetchLimit,
   });
