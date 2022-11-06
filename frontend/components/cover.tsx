@@ -1,5 +1,5 @@
 import { Carousel } from '@mantine/carousel';
-import { Box, Button, createStyles, Group, Stack, Title } from '@mantine/core';
+import { Box, Button, createStyles, Divider, Group, Stack, Title } from '@mantine/core';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,13 +8,17 @@ import coverImages from '../const/cover-images';
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   cover: {
-    position: 'relative',
-    minHeight: 552,
+    gap: '25px',
   },
-  coverElements: {
+  coverBackground: {
+    position: 'relative',
+    minHeight: '552px',
+  },
+  coverTitle: {
     position: 'absolute',
     padding: `${theme.spacing.lg}px ${theme.spacing.lg}px 50px ${theme.spacing.lg}px`,
     height: '100%',
+    width: '100%',
     background: 'transparent',
     zIndex: 1,
     color: 'white',
@@ -40,29 +44,6 @@ const useStyles = createStyles((theme, _params, getRef) => ({
       fontSize: '20px',
     },
   },
-  coverButtons: {
-    width: '100%',
-    marginTop: 'auto',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    gap: '50px',
-    pointerEvents: 'initial',
-  },
-  newsButton: {
-    transition: '0.3s',
-    '&:hover': {
-      backgroundColor: 'rgba(34, 139, 230, 0.7)',
-    },
-  },
-  intentionsButton: {
-    color: theme.colors.gray[0],
-    background: 'transparent',
-    transition: '0.3s',
-    '&:hover': {
-      color: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
-      textShadow: 'none',
-    },
-  },
   imageCarousel: {
     height: '100%',
     width: '100%',
@@ -78,6 +59,42 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     transition: 'opacity 150ms ease',
     opacity: 0,
   },
+  coverButtons: {
+    width: '100%',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    gap: '50px',
+    rowGap: '25px',
+  },
+  newsButton: {
+    width: '252px',
+    transition: '0.3s',
+    '&:hover': {
+      backgroundColor: 'rgba(34, 139, 230, 0.7)',
+    },
+  },
+  intentionsButton: {
+    width: '252px',
+    color: theme.colors.gray[8],
+    background: 'transparent',
+    transition: '0.3s',
+    '&:hover': {
+      color: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
+    },
+  },
+  liturgyButton: {
+    width: '252px',
+    transition: '0.3s',
+    borderColor: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
+    '&:hover': {
+      color: theme.colors.gray[8],
+      backgroundColor: 'rgba(34, 139, 230, 0.2)',
+    },
+  },
+  divider: {
+    width: '75%',
+    alignSelf: 'center',
+  },
   height100: {
     height: '100%',
   },
@@ -85,7 +102,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
 
 export function Cover() {
   const { classes } = useStyles();
-  const autoplay = useRef(Autoplay({ delay: 5000, stopOnInteraction: false }));
+  const autoplay = useRef(Autoplay({ delay: 15000, stopOnInteraction: false }));
 
   const carouselImages = coverImages.map((coverImage, index) => (
     <Carousel.Slide key={index}>
@@ -96,46 +113,56 @@ export function Cover() {
         objectFit="cover"
         objectPosition="center"
         quality={100}
-        priority
+        priority={index === 0}
       />
     </Carousel.Slide>
   ));
 
   return (
-    <Box className={classes.cover}>
-      <Stack className={classes.coverElements} justify="flex-start" align="center">
-        <Title order={1} className={classes.mainTitle} align="center">
-          Parafia Rzymskokatolicka pw. Matki Bożej Fatimskiej
-        </Title>
-        <Title order={2} className={classes.subTitle} align="center">
-          Kielce-Dyminy
-        </Title>
-        <Group className={classes.coverButtons} align="center">
-          <Link href="/ogloszenia-duszpasterskie" passHref>
-            <Button className={classes.newsButton} component="a" size="xl">
-              Ogłoszenia
-            </Button>
-          </Link>
-          <Link href="/intencje-mszalne" passHref>
-            <Button className={classes.intentionsButton} component="a" variant="default" size="xl">
-              Intencje mszalne
-            </Button>
-          </Link>
-        </Group>
-      </Stack>
-      <Carousel
-        classNames={{
-          root: classes.imageCarousel,
-          controls: classes.carouselControls,
-          viewport: classes.height100,
-          container: classes.height100,
-        }}
-        plugins={[autoplay.current]}
-        onMouseDown={autoplay.current.reset}
-        loop
-      >
-        {carouselImages}
-      </Carousel>
-    </Box>
+    <Stack className={classes.cover}>
+      <Box className={classes.coverBackground}>
+        <Stack className={classes.coverTitle} justify="flex-start" align="center">
+          <Title order={1} className={classes.mainTitle} align="center">
+            Parafia Rzymskokatolicka
+            <br />
+            pw. Matki Bożej Fatimskiej
+          </Title>
+          <Title order={2} className={classes.subTitle} align="center">
+            Kielce-Dyminy
+          </Title>
+        </Stack>
+        <Carousel
+          classNames={{
+            root: classes.imageCarousel,
+            controls: classes.carouselControls,
+            viewport: classes.height100,
+            container: classes.height100,
+          }}
+          plugins={[autoplay.current]}
+          onMouseDown={autoplay.current.reset}
+          loop
+        >
+          {carouselImages}
+        </Carousel>
+      </Box>
+      <Group className={classes.coverButtons} align="center">
+        <Link href="/ogloszenia-duszpasterskie" passHref>
+          <Button className={classes.newsButton} component="a" size="xl">
+            Ogłoszenia
+          </Button>
+        </Link>
+        <Link href="/intencje-mszalne" passHref>
+          <Button className={classes.intentionsButton} component="a" variant="default" size="xl">
+            Intencje mszalne
+          </Button>
+        </Link>
+        <Link href="/liturgia" passHref>
+          <Button className={classes.liturgyButton} component="a" variant="light" size="xl">
+            Liturgia
+          </Button>
+        </Link>
+      </Group>
+      <Divider className={classes.divider} size="sm" />
+    </Stack>
   );
 }
