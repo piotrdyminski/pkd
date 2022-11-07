@@ -16,6 +16,16 @@
       "type": "richtext",
       "required": true
     },
+    "image": {
+      "allowedTypes": ["images"],
+      "type": "media",
+      "multiple": false
+    },
+    "images": {
+      "allowedTypes": ["images"],
+      "type": "media",
+      "multiple": true
+    },
     "page_slug": {
       "type": "text",
       "default": "/kancelaria/sakrament-euchahrystii",
