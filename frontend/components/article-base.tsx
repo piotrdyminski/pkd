@@ -22,6 +22,7 @@ const useStyles = createStyles(() => ({
   articleImageWrapper: {
     maxHeight: '600px',
     position: 'relative',
+    pointerEvents: 'none',
   },
 }));
 
@@ -34,13 +35,13 @@ export default function ArticleBase({
   const { classes } = useStyles();
   const { description, slug, image } = article;
   const imageObject = image.data?.attributes;
-  const { alternativeText, width = 0, height = 0 } = imageObject ?? {};
+  const { alternativeText = '', width = 0, height = 0 } = imageObject ?? {};
 
   const getArticleImage = (image: StrapiApiImage) => (
     <AspectRatio ratio={width / height} className={classes.articleImageWrapper}>
       <Image
         src={getStrapiMedia(getResponsiveImageUrl(image, ['large']))}
-        alt={alternativeText || ''}
+        alt={alternativeText}
         width={width}
         height={height}
         layout="fill"
