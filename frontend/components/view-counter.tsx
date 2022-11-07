@@ -11,7 +11,7 @@ export default function ViewCounter() {
   useEffect(() => {
     const fetchViewCount = async (shouldIncrementViewCounter: boolean): Promise<number> => {
       const method = shouldIncrementViewCounter ? 'POST' : 'GET';
-      const viewCountResponse = await fetch('/api/view-counter', { method });
+      const viewCountResponse = await fetch('/api/view-counter-proxy', { method });
       return await viewCountResponse.json();
     };
 

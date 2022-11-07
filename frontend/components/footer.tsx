@@ -8,6 +8,7 @@ const useStyles = createStyles(() => ({
     padding: '50px 40px 20px 40px',
     display: 'flex',
     flexDirection: 'column',
+    boxShadow: 'inset 0px 10px 15px -15px rgba(0, 0, 0, 0.1)',
   },
 
   contactContainer: {
@@ -21,7 +22,7 @@ export default function AppFooter() {
   const [scroll, scrollTo] = useWindowScroll();
 
   const address = 'Sukowska 18, 25-146 Kielce';
-  const phoneNumber = '665 628 759';
+  const phoneNumber = '+48 665 628 759';
   const email = 'kancelaria@parafiakielcedyminy.pl';
 
   return (

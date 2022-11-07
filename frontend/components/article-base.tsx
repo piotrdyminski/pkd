@@ -1,4 +1,4 @@
-import { Anchor, createStyles, Stack, Text } from '@mantine/core';
+import { Anchor, AspectRatio, createStyles, Text } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getResponsiveImageUrl, getStrapiMedia } from '../lib/media';
@@ -17,9 +17,12 @@ const useStyles = createStyles(() => ({
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    align: 'flex-start',
-    justify: 'flex-start',
-    gap: '16px',
+    gap: '24px',
+  },
+  articleImageWrapper: {
+    maxHeight: '600px',
+    position: 'relative',
+    pointerEvents: 'none',
   },
 }));
 
@@ -32,18 +35,21 @@ export default function ArticleBase({
   const { classes } = useStyles();
   const { description, slug, image } = article;
   const imageObject = image.data?.attributes;
-  const { alternativeText, width, height } = imageObject ?? {};
+  const { alternativeText = '', width = 0, height = 0 } = imageObject ?? {};
 
   const getArticleImage = (image: StrapiApiImage) => (
-    <Stack align="center">
+    <AspectRatio ratio={width / height} className={classes.articleImageWrapper}>
       <Image
         src={getStrapiMedia(getResponsiveImageUrl(image, ['large']))}
-        alt={alternativeText || ''}
+        alt={alternativeText}
         width={width}
         height={height}
+        layout="fill"
+        objectFit="contain"
+        objectPosition="center"
         quality={100}
       />
-    </Stack>
+    </AspectRatio>
   );
 
   return (

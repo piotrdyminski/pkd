@@ -1,4 +1,4 @@
-import { createStyles, Divider, Group, Stack, Text, Title } from '@mantine/core';
+import { createStyles, Group, Stack, Text, Title } from '@mantine/core';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ArticleCard } from '../components/article-card';
 import { Cover } from '../components/cover';
@@ -7,10 +7,6 @@ import { ArticleModel } from '../models/article';
 import { StrapiApiResponse } from '../models/strapi';
 
 const useStyles = createStyles((theme) => ({
-  divider: {
-    width: '75%',
-    alignSelf: 'center',
-  },
   content: {
     padding: '40px',
     alignItems: 'center',
@@ -66,7 +62,6 @@ export default function IndexPage(props: InferGetStaticPropsType<typeof getStati
   return (
     <Stack>
       <Cover />
-      <Divider className={classes.divider} size="sm" />
       <Stack className={classes.content}>
         <Group className={classes.mainText}>
           <Text className={classes.firstParagraph} inherit>
