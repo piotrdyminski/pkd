@@ -51,7 +51,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
         {description}
       </Text>
       <Link href={href} passHref>
-        <Button variant="light" color="blue" fullWidth mt="md" radius="md" size="md">
+        <Button component="a" variant="light" color="blue" fullWidth mt="md" radius="md" size="md">
           Czytaj więcej
         </Button>
       </Link>
