@@ -28,7 +28,7 @@
     },
     "page_slug": {
       "type": "text",
-      "default": "/kancelaria/sakrament-euchahrystii",
+      "default": "/kancelaria/sakrament-eucharystii",
       "required": true
     }
   }
