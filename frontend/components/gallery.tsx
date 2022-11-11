@@ -59,9 +59,15 @@ export default function Gallery({ images }: GalleryProps) {
     </Grid.Col>
   ));
 
-  const carouselImages = images.map(({ url, alternativeText }, index) => (
+  const carouselImages = images.map((image, index) => (
     <Carousel.Slide key={index}>
-      <Image src={getStrapiMedia(url)} alt={alternativeText || ''} layout="fill" objectFit="scale-down" quality={100} />
+      <Image
+        src={getStrapiMedia(getResponsiveImageUrl(image, ['large']))}
+        alt={image.alternativeText || ''}
+        layout="fill"
+        objectFit="scale-down"
+        quality={100}
+      />
     </Carousel.Slide>
   ));
 
