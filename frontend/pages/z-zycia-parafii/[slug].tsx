@@ -2,16 +2,20 @@ import { Text } from '@mantine/core';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Article from '../../components/article';
 import Page from '../../components/page';
+import Seo from '../../components/seo';
 import { fetchAPI } from '../../lib/api';
+import { getResponsiveImageUrl, getStrapiMedia } from '../../lib/media';
 import { ArticleModel } from '../../models/article';
 import { StrapiApiResponse } from '../../models/strapi';
 
 export default function ArticlePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const article = props.article.data?.[0]?.attributes;
+  const { title, description, image } = article ?? {};
+  const imageObject = image?.data?.attributes;
   const breadcrumbs = [
     { label: 'Strona główna', href: '/' },
     { label: 'Z życia parafii', href: '/z-zycia-parafii' },
-    ...(article ? [{ label: article.title }] : []),
+    ...(title ? [{ label: title }] : []),
   ];
 
   const articleContent = article ? (
@@ -21,9 +25,17 @@ export default function ArticlePage(props: InferGetStaticPropsType<typeof getSta
   );
 
   return (
-    <Page breadcrumbs={breadcrumbs} align="center">
-      {articleContent}
-    </Page>
+    <>
+      <Seo
+        metaTitle={title}
+        metaDescription={description}
+        shareImage={imageObject && getStrapiMedia(getResponsiveImageUrl(imageObject, ['large']))}
+        article
+      />
+      <Page breadcrumbs={breadcrumbs} align="center">
+        {articleContent}
+      </Page>
+    </>
   );
 }
 

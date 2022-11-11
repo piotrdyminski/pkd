@@ -53,7 +53,7 @@ export default function Gallery({ images }: GalleryProps) {
           layout="fill"
           objectFit="cover"
           objectPosition="center"
-          quality={100}
+          unoptimized
         />
       </AspectRatio>
     </Grid.Col>
@@ -66,7 +66,7 @@ export default function Gallery({ images }: GalleryProps) {
         alt={image.alternativeText || ''}
         layout="fill"
         objectFit="scale-down"
-        quality={100}
+        unoptimized
       />
     </Carousel.Slide>
   ));

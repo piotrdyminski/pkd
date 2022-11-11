@@ -65,26 +65,25 @@ const useStyles = createStyles((theme, _params, getRef) => ({
     flexWrap: 'wrap',
     gap: '50px',
     rowGap: '25px',
+    '& > a': {
+      width: '252px',
+      padding: 0,
+      transition: '0.3s',
+    },
   },
   newsButton: {
-    width: '252px',
-    transition: '0.3s',
     '&:hover': {
       backgroundColor: 'rgba(34, 139, 230, 0.7)',
     },
   },
   intentionsButton: {
-    width: '252px',
     color: theme.colors.gray[8],
     background: 'transparent',
-    transition: '0.3s',
     '&:hover': {
       color: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
     },
   },
   liturgyButton: {
-    width: '252px',
-    transition: '0.3s',
     borderColor: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
     '&:hover': {
       color: theme.colors.gray[8],
@@ -112,7 +111,7 @@ export function Cover() {
         layout="fill"
         objectFit="cover"
         objectPosition="center"
-        quality={100}
+        unoptimized
         priority={index === 0}
       />
     </Carousel.Slide>
