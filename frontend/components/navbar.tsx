@@ -65,6 +65,7 @@ const navbarItemList: NavbarItem[] = [
       { label: 'Chór', link: '/grupy-parafialne/chor' },
       { label: 'Ministranci', link: '/grupy-parafialne/ministranci' },
       { label: 'Róże różańcowe', link: '/grupy-parafialne/roze-rozancowe' },
+      { label: 'Krąg biblijny', link: '/grupy-parafialne/krag-biblijny' },
       { label: 'Schola młodzieżowa', link: '/grupy-parafialne/schola-mlodziezowa' },
       { label: 'Schola dziecięca', link: '/grupy-parafialne/schola-dziecieca' },
       { label: 'Strażacy', link: '/grupy-parafialne/strazacy' },
