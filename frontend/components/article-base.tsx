@@ -42,12 +42,10 @@ export default function ArticleBase({
       <Image
         src={getStrapiMedia(getResponsiveImageUrl(image, ['large']))}
         alt={alternativeText}
-        width={width}
-        height={height}
         layout="fill"
         objectFit="contain"
         objectPosition="center"
-        quality={100}
+        unoptimized
       />
     </AspectRatio>
   );

@@ -7,6 +7,7 @@ import { StrapiApiSingleResponse } from '../models/strapi';
 import Gallery from './gallery';
 import Page from './page';
 import RichText from './rich-text';
+import Seo from './seo';
 
 type SinglePageProps = {
   title: string;
@@ -34,23 +35,28 @@ export default function SinglePage({
   const { alternativeText = '', width = 0, height = 0 } = imageObject ?? {};
 
   return (
-    <Page title={title} breadcrumbs={breadcrumbs}>
-      {imageObject && (
-        <AspectRatio ratio={width / height} className={classes.mainImageWrapper}>
-          <Image
-            src={getStrapiMedia(getResponsiveImageUrl(imageObject, ['large']))}
-            alt={alternativeText}
-            width={width}
-            height={height}
-            layout="fill"
-            objectFit="contain"
-            objectPosition="center"
-            quality={100}
-          />
-        </AspectRatio>
-      )}
-      <RichText html={content}></RichText>
-      {imagesList.length > 0 && <Gallery images={imagesList}></Gallery>}
-    </Page>
+    <>
+      <Seo
+        metaTitle={title}
+        shareImage={imageObject && getStrapiMedia(getResponsiveImageUrl(imageObject, ['large']))}
+        article
+      />
+      <Page title={title} breadcrumbs={breadcrumbs}>
+        {imageObject && (
+          <AspectRatio ratio={width / height} className={classes.mainImageWrapper}>
+            <Image
+              src={getStrapiMedia(getResponsiveImageUrl(imageObject, ['large']))}
+              alt={alternativeText}
+              layout="fill"
+              objectFit="contain"
+              objectPosition="center"
+              unoptimized
+            />
+          </AspectRatio>
+        )}
+        <RichText html={content}></RichText>
+        {imagesList.length > 0 && <Gallery images={imagesList}></Gallery>}
+      </Page>
+    </>
   );
 }

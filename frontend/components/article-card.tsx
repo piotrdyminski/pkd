@@ -37,7 +37,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
                 layout="fill"
                 objectFit="cover"
                 objectPosition="center"
-                quality={100}
+                unoptimized
               />
             </Anchor>
           </Link>

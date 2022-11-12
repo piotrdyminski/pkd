@@ -1,8 +1,9 @@
-import coverImage1 from '../public/cover-image-1.png';
-import coverImage2 from '../public/cover-image-2.png';
-import coverImage3 from '../public/cover-image-3.png';
-import coverImage4 from '../public/cover-image-4.png';
-import coverImage5 from '../public/cover-image-5.png';
+import grota1 from '../public/grota-1.jpg';
+import grota2 from '../public/grota-2.jpg';
+import kosciol1 from '../public/kosciol-1.jpg';
+import kosciol2 from '../public/kosciol-2.jpg';
+import kosciol3 from '../public/kosciol-3.jpg';
+import oltarz from '../public/oltarz.jpg';
 
-const coverImages = [coverImage1, coverImage2, coverImage3, coverImage4, coverImage5];
+const coverImages = [kosciol1, oltarz, kosciol2, kosciol3, grota1, grota2];
 export default coverImages;

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import ArticlePreview from '../components/article-preview';
 import Page from '../components/page';
+import Seo from '../components/seo';
 import { fetchAPI } from '../lib/api';
 import { parsePageNumber } from '../lib/utils';
 import { ArticleModel } from '../models/article';
@@ -20,7 +21,9 @@ export default function ArticlesPage(props: InferGetServerSidePropsType<typeof g
   const router = useRouter();
   const { data: articles, meta } = props.articles;
   const { page, pageCount } = meta.pagination;
-  const breadcrumbs = [{ label: 'Strona główna', href: '/' }, { label: 'Z życia parafii' }];
+  const title = 'Z życia parafii';
+  const metaTitle = page > 1 ? `${title} (strona ${page})` : title;
+  const breadcrumbs = [{ label: 'Strona główna', href: '/' }, { label: title }];
 
   const pageChanged = (page: number) => {
     router.push(`/z-zycia-parafii?strona=${page}`);
@@ -35,16 +38,19 @@ export default function ArticlesPage(props: InferGetServerSidePropsType<typeof g
     )) ?? [];
 
   return (
-    <Page title="Z życia parafii" breadcrumbs={breadcrumbs} align="center">
-      {articlePreviews.length > 0 ? (
-        <>
-          {articlePreviews}
-          <Pagination page={page} total={pageCount} onChange={pageChanged} withEdges mt="xl" />
-        </>
-      ) : (
-        <Text>Brak dostępnych artykułów.</Text>
-      )}
-    </Page>
+    <>
+      <Seo metaTitle={metaTitle} />
+      <Page title={title} breadcrumbs={breadcrumbs} align="center">
+        {articlePreviews.length > 0 ? (
+          <>
+            {articlePreviews}
+            <Pagination page={page} total={pageCount} onChange={pageChanged} withEdges mt="xl" />
+          </>
+        ) : (
+          <Text>Brak dostępnych artykułów.</Text>
+        )}
+      </Page>
+    </>
   );
 }
 

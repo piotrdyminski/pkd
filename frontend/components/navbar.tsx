@@ -53,7 +53,7 @@ const navbarItemList: NavbarItem[] = [
     links: [
       { label: 'Dane parafii', link: '/kancelaria/dane-parafii' },
       { label: 'Sakrament Chrztu', link: '/kancelaria/sakrament-chrztu' },
-      { label: 'Sakrament Euchahrystii', link: '/kancelaria/sakrament-euchahrystii' },
+      { label: 'Sakrament Eucharystii', link: '/kancelaria/sakrament-eucharystii' },
       { label: 'Sakrament Bierzmowania', link: '/kancelaria/sakrament-bierzmowania' },
       { label: 'Sakrament Małżeństwa', link: '/kancelaria/sakrament-malzenstwa' },
     ],
