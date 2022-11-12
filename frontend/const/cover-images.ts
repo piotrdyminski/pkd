@@ -6,4 +6,5 @@ import kosciol3 from '../public/kosciol-3.jpg';
 import oltarz from '../public/oltarz.jpg';
 
 const coverImages = [kosciol1, oltarz, kosciol2, kosciol3, grota1, grota2];
+export const mainImage = coverImages[0];
 export default coverImages;

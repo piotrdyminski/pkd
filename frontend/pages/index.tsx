@@ -3,6 +3,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ArticleCard } from '../components/article-card';
 import { Cover } from '../components/cover';
 import Seo from '../components/seo';
+import { mainImage } from '../const/cover-images';
 import { fetchAPI } from '../lib/api';
 import { ArticleModel } from '../models/article';
 import { StrapiApiResponse } from '../models/strapi';
@@ -60,7 +61,7 @@ export default function IndexPage(props: InferGetStaticPropsType<typeof getStati
 
   return (
     <>
-      <Seo metaDescription={description} />
+      <Seo metaDescription={description} shareImage={mainImage.src} />
       <Stack>
         <Cover />
         <Stack className={classes.content}>
