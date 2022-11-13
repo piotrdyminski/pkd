@@ -5,6 +5,6 @@ export type ArticleModel = {
   title: string;
   description: string;
   content: string;
-  image: StrapiApiSingleResponse<StrapiApiImage>;
-  images: StrapiApiResponse<StrapiApiImage>;
+  image: StrapiApiSingleResponse<StrapiApiImage> | null;
+  images: StrapiApiResponse<StrapiApiImage> | null;
 } & StrapiApiBaseModel;

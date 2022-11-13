@@ -34,7 +34,7 @@ export default function ArticleBase({
 }: React.PropsWithChildren<ArticleBaseProps>) {
   const { classes } = useStyles();
   const { description, slug, image } = article;
-  const imageObject = image.data?.attributes;
+  const imageObject = image?.data?.attributes;
   const { alternativeText = '', width = 0, height = 0 } = imageObject ?? {};
 
   const getArticleImage = (image: StrapiApiImage) => (
