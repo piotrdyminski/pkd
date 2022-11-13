@@ -23,7 +23,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
   const { classes } = useStyles();
   const { slug, title, description, image, publishedAt } = article;
   const href = `/z-zycia-parafii/${slug}`;
-  const imageObject = image.data?.attributes;
+  const imageObject = image?.data?.attributes;
 
   return (
     <Card className={classes.card} shadow="sm" p="lg" radius="md" withBorder>

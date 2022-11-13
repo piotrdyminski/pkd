@@ -3,6 +3,6 @@ import { StrapiApiBaseModel, StrapiApiImage, StrapiApiResponse, StrapiApiSingleR
 export type SinglePageModel = {
   content: string;
   page_slug: string;
-  image: StrapiApiSingleResponse<StrapiApiImage>;
-  images: StrapiApiResponse<StrapiApiImage>;
+  image: StrapiApiSingleResponse<StrapiApiImage> | null;
+  images: StrapiApiResponse<StrapiApiImage> | null;
 } & StrapiApiBaseModel;

@@ -10,7 +10,7 @@ type ArticleProps = {
 
 export default function Article({ article, categoryPath }: ArticleProps) {
   const { content, images } = article;
-  const imagesList = images.data?.map(({ attributes }) => attributes) ?? [];
+  const imagesList = images?.data?.map(({ attributes }) => attributes) ?? [];
   return (
     <ArticleBase article={article} categoryPath={categoryPath} preview={false}>
       <RichText html={content}></RichText>
