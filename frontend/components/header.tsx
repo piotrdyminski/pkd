@@ -12,7 +12,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     gap: '20px',
-    boxShadow: '0px -5px 15px 0px rgba(34, 139, 230, 0.7)',
+    boxShadow: '0px -5px 20px 0px rgba(34, 139, 230, 0.7)',
     [`@media (min-width: ${theme.breakpoints.md}px)`]: {
       display: 'none',
     },
