@@ -59,7 +59,7 @@ export const getServerSideProps: GetServerSideProps<{ articles: StrapiApiRespons
 }) => {
   const page = parsePageNumber(query.strona);
   const articles = await fetchAPI<StrapiApiResponse<ArticleModel>>('/articles', {
-    populate: ['image'],
+    populate: ['image', 'images'],
     sort: ['publishedAt:desc'],
     pagination: { page, pageSize: 10 },
   });
