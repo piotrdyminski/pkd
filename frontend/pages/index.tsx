@@ -1,5 +1,6 @@
-import { createStyles, Group, Stack, Text, Title } from '@mantine/core';
+import { Anchor, createStyles, Group, Stack, Text, Title } from '@mantine/core';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import Link from 'next/link';
 import { ArticleCard } from '../components/article-card';
 import { Cover } from '../components/cover';
 import Seo from '../components/seo';
@@ -37,6 +38,14 @@ const useStyles = createStyles((theme) => ({
     width: '100%',
     alignItems: 'center',
   },
+  articlePreviewLink: {
+    lineHeight: 1.35,
+    fontFamily: 'inherit',
+    color: 'inherit',
+    '&:hover': {
+      color: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
+    },
+  },
   articleCards: {
     width: '100%',
     justifyContent: 'space-evenly',
@@ -70,7 +79,13 @@ pamiątek po Janie Pawle II. Przy świątyni widnieje grota poświęcona Matce B
           </Text>
           {articleCards.length > 0 && (
             <Stack className={classes.articlePreview} spacing="xl">
-              <Title order={1}>Z życia parafii</Title>
+              <Title order={1} align="center">
+                <Link href="/z-zycia-parafii" passHref>
+                  <Anchor component="a" className={classes.articlePreviewLink} underline={false}>
+                    Z życia parafii
+                  </Anchor>
+                </Link>
+              </Title>
               <Group className={classes.articleCards}>{articleCards}</Group>
             </Stack>
           )}
