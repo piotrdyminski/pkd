@@ -46,7 +46,7 @@ export default function AppHeader({ opened, toggleNavbar }: AppHeaderProps) {
       <Burger opened={opened} onClick={toggleNavbar} size="sm" />
       <Link href="/" passHref>
         <Anchor component="a" className={classes.logo}>
-          <Logo />
+          <Logo size={45} />
           <Stack spacing={0}>
             <Title order={5} className={classes.mainTitle}>
               Parafia Matki Bożej Fatimskiej
