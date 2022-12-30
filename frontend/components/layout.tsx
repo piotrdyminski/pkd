@@ -8,7 +8,7 @@ import AppNavbar from './navbar';
 const useStyles = createStyles((theme) => ({
   background: {
     background:
-      'linear-gradient(to right, rgba(34, 139, 230, 0.15) 0%, white 10%, white 90%, rgba(34, 139, 230, 0.15) 100%)',
+      'linear-gradient(to right, rgba(34, 139, 230, 0.2) 0%, white 10%, white 90%, rgba(34, 139, 230, 0.2) 100%)',
   },
   root: {
     maxWidth: '1280px',
