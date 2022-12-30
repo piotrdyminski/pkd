@@ -1,5 +1,5 @@
-import logo from './extensions/header-icon.png';
 import favicon from './extensions/favicon.ico';
+import logo from './extensions/header-icon.png';
 
 export default {
   config: {
@@ -9,7 +9,6 @@ export default {
     head: {
       favicon: favicon,
     },
-    locales: ['pl'],
     menu: {
       logo: logo,
     },

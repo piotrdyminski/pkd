@@ -3,9 +3,9 @@
  *
  */
 
-import React, { memo } from 'react';
-import { LoadingIndicatorPage } from '@strapi/helper-plugin';
 import { Layout } from '@strapi/design-system/Layout';
+import { LoadingIndicatorPage } from '@strapi/helper-plugin';
+import React, { memo } from 'react';
 import { useModels } from '../../hooks';
 
 const HomePage = () => {
@@ -15,10 +15,9 @@ const HomePage = () => {
     return <LoadingIndicatorPage />;
   }
 
-  return (
-    <Layout>
-    </Layout>
-  );
+  // #custom-change (removed everything besides main layout)
+
+  return <Layout></Layout>;
 };
 
 export default memo(HomePage);
