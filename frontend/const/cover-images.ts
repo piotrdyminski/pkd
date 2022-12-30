@@ -10,7 +10,8 @@ import kosciol2 from '../public/kosciol-2.jpg';
 import kosciol3 from '../public/kosciol-3.jpg';
 import oltarz from '../public/oltarz.jpg';
 
-const coverImages = [
+export const mainImage = kosciol1;
+export const coverImages = [
   oltarzSwieta,
   szopka,
   oltarzLewySwieta,
@@ -22,5 +23,3 @@ const coverImages = [
   grota1,
   grota2,
 ];
-export const mainImage = kosciol1;
-export default coverImages;
