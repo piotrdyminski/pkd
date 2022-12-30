@@ -20,10 +20,16 @@ const useStyles = createStyles((theme) => ({
     width: '100%',
   },
   breadcrumbs: {
+    width: '100%',
     alignSelf: 'flex-start',
     flexWrap: 'wrap',
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
+  },
+  breadcrumb: {
+    whiteSpace: 'initial',
+    overflowWrap: 'break-word',
+    maxWidth: '100%',
   },
   mainDivider: {
     width: '50%',
@@ -37,12 +43,14 @@ export default function Page({ title, breadcrumbs, align, children }: React.Prop
     breadcrumbs?.map(({ label, href }, index) =>
       href ? (
         <Link key={index} href={href} passHref>
-          <Anchor component="a" underline={false}>
+          <Anchor component="a" underline={false} className={classes.breadcrumb}>
             {label}
           </Anchor>
         </Link>
       ) : (
-        <Text key={index}>{label}</Text>
+        <Text key={index} className={classes.breadcrumb}>
+          {label}
+        </Text>
       )
     ) ?? [];
 
