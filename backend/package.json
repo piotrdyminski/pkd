@@ -16,9 +16,9 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "build-prod": "yarn run patch-admin && yarn run build",
+    "build-prod": "yarn run patch-strapi && yarn run build",
     "strapi": "strapi",
-    "patch-admin": "node src/extensions/patch-admin.js && patch-package @strapi/admin"
+    "patch-strapi": "node src/extensions/patch-strapi.js && patch-package @strapi/admin"
   },
   "devDependencies": {},
   "strapi": {
