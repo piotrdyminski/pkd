@@ -41,7 +41,7 @@ export default function NavbarHeader() {
     <header className={classes.header}>
       <Link href="/" passHref>
         <Anchor component="a" className={classes.logo}>
-          <Logo />
+          <Logo size={100} />
           <Stack spacing={0}>
             <Title order={3} className={classes.mainTitle}>
               Parafia Matki Bożej Fatimskiej

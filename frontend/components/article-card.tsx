@@ -9,13 +9,21 @@ type ArticleCardProps = {
   article: ArticleModel;
 };
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   card: {
     flexBasis: '400px',
   },
   image: {
     position: 'relative',
     height: '225px',
+  },
+  link: {
+    lineHeight: 1.35,
+    fontFamily: 'inherit',
+    color: 'inherit',
+    '&:hover': {
+      color: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
+    },
   },
 }));
 
@@ -43,7 +51,13 @@ export function ArticleCard({ article }: ArticleCardProps) {
           </Link>
         </Card.Section>
       )}
-      <Title order={3}>{title}</Title>
+      <Title order={3}>
+        <Link href={href} passHref>
+          <Anchor component="a" className={classes.link} underline={false}>
+            {title}
+          </Anchor>
+        </Link>
+      </Title>
       <Badge color="gray" variant="outline" mb="xs">
         {formatDateString(publishedAt)}
       </Badge>

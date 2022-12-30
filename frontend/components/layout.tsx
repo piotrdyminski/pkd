@@ -1,4 +1,4 @@
-import { AppShell, createStyles } from '@mantine/core';
+import { AppShell, Box, createStyles } from '@mantine/core';
 import { useScrollLock } from '@mantine/hooks';
 import { useState } from 'react';
 import AppFooter from './footer';
@@ -6,10 +6,15 @@ import AppHeader from './header';
 import AppNavbar from './navbar';
 
 const useStyles = createStyles((theme) => ({
+  background: {
+    background:
+      'linear-gradient(to right, rgba(34, 139, 230, 0.2) 0%, white 10%, white 90%, rgba(34, 139, 230, 0.2) 100%)',
+  },
   root: {
     maxWidth: '1280px',
     margin: 'auto',
     overflow: 'hidden',
+    background: 'white',
   },
   body: {
     paddingBottom: '30px',
@@ -40,18 +45,20 @@ export default function Layout({ children }: React.PropsWithChildren<unknown>) {
   };
 
   return (
-    <AppShell
-      classNames={{
-        root: classes.root,
-        body: classes.body,
-        main: classes.main,
-      }}
-      header={<AppHeader {...{ opened, toggleNavbar }} />}
-      navbar={<AppNavbar {...{ opened, closeNavbar }} />}
-      footer={<AppFooter />}
-      fixed={false}
-    >
-      {children}
-    </AppShell>
+    <Box className={classes.background}>
+      <AppShell
+        classNames={{
+          root: classes.root,
+          body: classes.body,
+          main: classes.main,
+        }}
+        header={<AppHeader {...{ opened, toggleNavbar }} />}
+        navbar={<AppNavbar {...{ opened, closeNavbar }} />}
+        footer={<AppFooter />}
+        fixed={false}
+      >
+        {children}
+      </AppShell>
+    </Box>
   );
 }

@@ -4,7 +4,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
-import coverImages from '../const/cover-images';
+import { coverImages } from '../const/cover-images';
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   cover: {

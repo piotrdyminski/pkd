@@ -10,10 +10,8 @@ type ArticleTitleProps = {
 };
 
 const useStyles = createStyles((theme) => ({
-  title: {
-    lineHeight: 1.7,
-  },
   link: {
+    lineHeight: 1.35,
     fontFamily: 'inherit',
     color: 'inherit',
     '&:hover': {
@@ -39,10 +37,8 @@ export default function ArticleTitle({ article, categoryPath, preview }: Article
     title
   );
   return (
-    <Stack align="flex-start" justify="flex-start" spacing={0}>
-      <Title order={2} className={classes.title}>
-        {titleContent}
-      </Title>
+    <Stack align="flex-start" justify="flex-start" spacing="xs">
+      <Title order={2}>{titleContent}</Title>
       <Group className={classes.subtitle}>
         <Text>
           Kategoria:{' '}
